@@ -1,14 +1,13 @@
 # Programmierprojekt: <Themenname>
 
 * Teammitglieder:
-	1. <Name1>
-	2. <Name2>
-	3. <Name3>
-	4. <Name4>
-* Team: <Teamnummer>
-* Semester: 
+	1. Feres Touati
+	2. Marouan Lahouimel
+	3. Abdelrahman Elsharkawi
+* Team: 9
+* Semester:  
 
-Hier eine Kurzbeschreibung Ihres Projektes in 2-3 Sätzen
+Projekt beschreibung: Ausgehend von einer gegebenen Posenschätzung welche über eine REST Interface angesprochen werden kann, soll eine Software zur automatischen Auswahl von Bildausschnitten geschrieben werden. Diese Bildausschnitte sollen sich je nach Wahl des Benutzers auf Gesichter oder komplette Posen beziehen. Weiterhin soll das Einlesen eines Videos möglich sein.
 
 ## Installationshinweise
 
