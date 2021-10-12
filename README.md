@@ -1,4 +1,4 @@
-# Programmierprojekt: der automatische Kameramann
+# Programmierprojekt: Der automatische Kameramann
 
 * Teammitglieder:
 	1. Feres Touati
