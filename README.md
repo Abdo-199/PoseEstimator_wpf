@@ -7,7 +7,9 @@
 * Team: 9
 * Semester: 5/2/?
 
-Projekt beschreibung: Ausgehend von einer gegebenen Posenschätzung welche über eine REST Interface angesprochen werden kann, soll eine Software zur automatischen Auswahl von Bildausschnitten geschrieben werden. Diese Bildausschnitte sollen sich je nach Wahl des Benutzers auf Gesichter oder komplette Posen beziehen. Weiterhin soll das Einlesen eines Videos möglich sein.
+Projekt beschreibung: Ausgehend von einer gegebenen Posenschätzung welche über eine REST Interface angesprochen werden kann, soll eine Software zur 
+automatischen Auswahl von Bildausschnitten geschrieben werden. Diese Bildausschnitte sollen sich je nach Wahl des Benutzers auf 
+Gesichter oder komplette Posen beziehen. Weiterhin soll das Einlesen eines Videos möglich sein.
 
 ## Installationshinweise
 
