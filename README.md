@@ -5,7 +5,7 @@
 	2. Marouan Lahouimel
 	3. Abdelrahman Elsharkawi
 * Team: 9
-* Semester: 5/8/3
+
 
 Projekt beschreibung: Ausgehend von einer gegebenen Posenschätzung welche über eine REST Interface angesprochen werden kann, soll eine Software zur 
 automatischen Auswahl von Bildausschnitten geschrieben werden. Diese Bildausschnitte sollen sich je nach Wahl des Benutzers auf 
