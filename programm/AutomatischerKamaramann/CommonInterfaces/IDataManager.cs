@@ -10,7 +10,7 @@ using Emgu.CV.Structure;
 
 namespace CommonInterfaces
 {
-    interface IDataManager
+    public interface IDataManager
     {public string Path { get; set; }
         public Capture videoImport(string path);
         public Image<Bgr,Byte> photoImport(string path);

@@ -8,7 +8,7 @@ using Emgu.CV.Structure;
 
 namespace CommonInterfaces
 {
-    interface IVideoToFrames
+    public interface IVideoToFrames
     {
         Image<Bgr,Byte> currentFrame { get; set; }
         void inFrames();
