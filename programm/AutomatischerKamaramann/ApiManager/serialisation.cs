@@ -16,8 +16,13 @@ namespace ApiManager
 
         string Path = $"{AppDomain.CurrentDomain.BaseDirectory}/image.png";
 
-                Bitmap bmp = myEmguImage.ToBitmap();
-                bmp.Save(Path, ImageFormat.Png);
+        //Konvertieren von EmguImage zu System.Drawing.Image
+        public void emguToImage(Image<Rgb, Byte> myEmguImage)
+        {
+            //damit kein konflikt 
+            if (File.Exists(Path))
+            {
+                File.Delete(Path);
             }
 
             Bitmap bmp = myEmguImage.ToBitmap();
