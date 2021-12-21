@@ -8,30 +8,41 @@ namespace VideoToFrames
 {
     public class inFrames
     {
-        
-        public List<Image<Rgb, Byte>> vidToFrames(string Filename)
+
+        public List<Image<Bgr, Byte>> vidToFrames(string Filename)
         {
-            List<Image<Rgb, Byte>> listFrames = new List<Image<Rgb, Byte>>();
+            List<Image<Bgr, Byte>> ListFrames = new List<Image<Bgr, Byte>>();
 
-            VideoCapture _capture = new VideoCapture(Filename);
-            bool ProCes = true;
+            VideoCapture capture = new VideoCapture(Filename);
 
-            while (ProCes)
+            try
             {
-                Image<Rgb,Byte> frame = _capture.QueryFrame().ToImage<Rgb,Byte>();
+                bool ProCes = true;
 
-                if (frame != null)
+                while (ProCes)
                 {
-                    listFrames.Add(frame);
+                    Image<Bgr, Byte> frame = capture.QueryFrame().ToImage<Bgr, Byte>();
+
+                    if (frame != null)
+                    {
+                        ListFrames.Add(frame);
+                    }
+                    else
+                    {
+                        ProCes = false;
+                    }
                 }
-                else
-                {
-                    ProCes = false;
-                }
+
+                return ListFrames;
             }
 
-            return listFrames;
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
+
     }
-    
+
 }

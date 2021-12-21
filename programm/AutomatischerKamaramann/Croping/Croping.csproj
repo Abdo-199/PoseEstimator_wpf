@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CommonInterfaces\CommonInterfaces.csproj" />
+    <ProjectReference Include="..\FaceDetection\FaceDetection.csproj" />
+    <ProjectReference Include="..\PoseEstimating\PoseEstimating.csproj" />
   </ItemGroup>
 
 </Project>

@@ -10,18 +10,20 @@ using Emgu.CV.Structure;
 
 namespace Croping
 {
-    class videoCroping
+    class videoCroping : photoCroping
     {
         photoCroping member = new photoCroping();
-        Image<Bgr, Byte>[] Frames = null;
+        Image<Bgr, Byte> Frame = null;
 
-        public Image<Bgr, Byte>[] Crop(Image<Rgb, Byte> currentFrame, Rectangle[] Opject)
+        public List<Image<Bgr, Byte>> VideoCrop(Image<Rgb, Byte> currentFrame, Rectangle[] Object)
         {
-            return Frames;
+
+            return null;
         }
 
-        public Image<Bgr, Byte>[] export(string fileName)
+        public Image<Bgr, Byte> export(string fileName)
         {
+
             return null;
         }
     }
