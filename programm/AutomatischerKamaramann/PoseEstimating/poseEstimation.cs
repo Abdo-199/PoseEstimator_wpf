@@ -13,7 +13,7 @@ namespace PoseEstimating
         {
             return null;
         }
-        public Image<Rgb, Byte>[] PoseFraming(List<Dictionary<string, Point>> coordinates)
+        public List<Rectangle> PoseFraming(List<Dictionary<string, PointF>> coordinates)
         {
             return null;
         }

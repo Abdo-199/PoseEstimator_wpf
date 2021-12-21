@@ -11,7 +11,7 @@ using Emgu.CV.Structure;
 
 namespace ApiManager
 {
-    class serialisation
+    public class serialisation
     {
 
         string Path = $"{AppDomain.CurrentDomain.BaseDirectory}/image.png";
