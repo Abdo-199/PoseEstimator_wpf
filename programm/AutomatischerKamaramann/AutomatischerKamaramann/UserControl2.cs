@@ -10,12 +10,11 @@ using System.Windows.Forms;
 
 namespace AutomatischerKamaramann
 {
-    public partial class Form1 : Form
+    public partial class UserControl2 : UserControl
     {
-        public Form1()
+        public UserControl2()
         {
             InitializeComponent();
         }
-
     }
 }
