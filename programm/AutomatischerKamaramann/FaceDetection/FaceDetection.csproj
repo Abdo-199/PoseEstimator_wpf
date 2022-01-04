@@ -8,4 +8,8 @@
     <PackageReference Include="Emgu.CV" Version="4.5.4.4788" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Training Data\" />
+  </ItemGroup>
+
 </Project>

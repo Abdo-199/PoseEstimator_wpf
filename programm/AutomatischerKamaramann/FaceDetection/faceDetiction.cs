@@ -19,7 +19,7 @@ namespace FaceDetection
             faceCascadeClassifier = classifier;
         }
 
-        /*public Rectangle[] FaceDetVid(List<Image<Rgb, Byte>> ListFrames)
+        public Rectangle[] FaceDetVid(List<Image<Bgr, Byte>> ListFrames)
         {
 
             Rectangle[] faces = null;
@@ -43,7 +43,7 @@ namespace FaceDetection
             }
             
             return faces;
-        }*/
+        }
 
         public Rectangle[] FaceDetIm(Image<Bgr, Byte> Image)
         {

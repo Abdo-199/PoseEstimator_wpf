@@ -17,7 +17,8 @@ namespace VideoToFrames
         public List<Image<Bgr, Byte>> vidToFrames(string Filename)
         {
 
-            List<Image<Bgr, Byte>> ListFrames = new List<Image<Bgr, Byte>>(); 
+            List<Image<Bgr, Byte>> ListFrames = new List<Image<Bgr, Byte>>();
+
             capture = new VideoCapture(Filename);
 
             Totalframes = capture.Get(CapProp.FrameCount);
