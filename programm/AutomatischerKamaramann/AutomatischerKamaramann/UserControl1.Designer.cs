@@ -55,6 +55,7 @@ namespace AutomatischerKamaramann
             this.iconButton1.TabIndex = 1;
             this.iconButton1.Text = "Bitte wählen Sie ein image Datei";
             this.iconButton1.UseVisualStyleBackColor = true;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // UserControl1
             // 

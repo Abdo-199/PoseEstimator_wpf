@@ -16,5 +16,23 @@ namespace AutomatischerKamaramann
         {
             InitializeComponent();
         }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "JPG|*.jpg|PNG|*|Bitmap|*.bmp", ValidateNames = true, Multiselect = false })
+                {
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                        pictureBox1.Image = Image.FromFile(ofd.FileName);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
