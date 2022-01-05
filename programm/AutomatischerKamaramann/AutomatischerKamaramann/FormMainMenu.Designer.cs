@@ -39,6 +39,7 @@ namespace AutomatischerKamaramann
             this.lblTitleChildForm = new System.Windows.Forms.Label();
             this.iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
             this.userControl11 = new AutomatischerKamaramann.UserControl1();
+            this.userControl21 = new AutomatischerKamaramann.UserControl2();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -177,16 +178,27 @@ namespace AutomatischerKamaramann
             // userControl11
             // 
             this.userControl11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
-            this.userControl11.Location = new System.Drawing.Point(220, 70);
+            this.userControl11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.userControl11.Location = new System.Drawing.Point(220, 75);
             this.userControl11.Name = "userControl11";
-            this.userControl11.Size = new System.Drawing.Size(825, 622);
+            this.userControl11.Size = new System.Drawing.Size(825, 620);
             this.userControl11.TabIndex = 2;
+            // 
+            // userControl21
+            // 
+            this.userControl21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
+            this.userControl21.Location = new System.Drawing.Point(220, 75);
+            this.userControl21.Name = "userControl21";
+            this.userControl21.Size = new System.Drawing.Size(822, 617);
+            this.userControl21.TabIndex = 3;
             // 
             // FormMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
             this.ClientSize = new System.Drawing.Size(1045, 692);
+            this.Controls.Add(this.userControl21);
             this.Controls.Add(this.userControl11);
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
@@ -215,6 +227,7 @@ namespace AutomatischerKamaramann
         private System.Windows.Forms.Label lblTitleChildForm;
         private FontAwesome.Sharp.IconPictureBox iconCurrentChildForm;
         private UserControl1 userControl11;
+        private UserControl2 userControl21;
     }
 }
 

@@ -50,11 +50,11 @@ namespace AutomatischerKamaramann
             this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
             this.iconButton1.IconColor = System.Drawing.Color.Black;
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.Location = new System.Drawing.Point(0, 476);
+            this.iconButton1.Location = new System.Drawing.Point(3, 476);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Size = new System.Drawing.Size(216, 23);
             this.iconButton1.TabIndex = 1;
-            this.iconButton1.Text = "Bitte wählen Sie ein image Datei";
+            this.iconButton1.Text = "Bitte wählen Sie ein Image Datei aus";
             this.iconButton1.UseVisualStyleBackColor = true;
             this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 

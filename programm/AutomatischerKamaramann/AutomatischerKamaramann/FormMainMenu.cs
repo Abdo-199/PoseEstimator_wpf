@@ -16,7 +16,7 @@ namespace AutomatischerKamaramann
     {  //Fields (store the current button and a panel to apply left border to the buttom )
         private IconButton currenrBtn;
         private Panel leftBorderBtn;
-        private Form currentChildForm;
+      
         //Constructor
         public FormMainMenu()
         {
@@ -88,12 +88,18 @@ namespace AutomatischerKamaramann
         private void iconButton2_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color2);
+            userControl21.Show();
+            userControl11.Hide();
+            userControl21.BringToFront();
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
             userControl11.Show();
+            userControl21.Hide();
+            userControl11.BringToFront();
+           
 
 
 
