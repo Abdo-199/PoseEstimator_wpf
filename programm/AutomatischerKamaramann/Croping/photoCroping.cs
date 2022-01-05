@@ -9,11 +9,21 @@ namespace Croping
 {
     public class photoCroping
     {
-        private Image<Rgb, Byte> Cutout = null;
+        private Image<Bgr, Byte> Cutout = null;
 
-        public  Image<Rgb, Byte> PhotoCrop(Image<Rgb, Byte> currentFrame, Rectangle[] FaceRec)
+        public  Image<Bgr, Byte> PhotoCrop(Image<Rgb, Byte> currentFrame, Rectangle[] FaceRec)
         {
-            return Cutout;
+            if (FaceRec.Length > 0)
+            {
+                foreach (var face in FaceRec)
+                {
+                    
+
+                }
+
+            }
+
+            return null;
         }
         
         /*public Rectangle[] faceDet()
