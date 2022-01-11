@@ -11,9 +11,12 @@ using Newtonsoft.Json;
 using RestSharp;
 
 namespace ApiManager
-{
+{   /// <summary>
+    /// Eine Klasse zur Kommunikation mit der Rest-Api der Posenschätzung 
+    /// </summary>
     public class apiHelper
-    {
+    {  
+        // 
         public static serialisation DZ = new serialisation();
         public List<Dictionary<string, PointF>> getCoordinates(Image<Rgb,Byte> img)
         {
@@ -27,7 +30,7 @@ namespace ApiManager
             request.AddHeader("Content-Type", " application/json");
             request.AddJsonBody(new { base64str = base64string });
             #endregion
-            //response
+            #region response
             IRestResponse response = client.Execute(request);
             //json string
             string content = response.Content;
@@ -35,23 +38,30 @@ namespace ApiManager
             var deContent = JsonConvert.DeserializeObject<List<Dictionary<string, List<double>>>>(content);
             //new list with PointF instead of List<double>
             List<Dictionary<string, PointF>> coordinats = new List<Dictionary<string, PointF>>();
+            //converting the List<double> part </double> to a pointf
+            //to get valid coordinates for the drawing of the rectangle arround each person
             foreach (var person in deContent)
-            {
+            {   // new Dictionary for each Person
                 Dictionary<string, PointF> parts = new Dictionary<string, PointF>();
                 foreach (var part in person)
-                {
+                {       
                     parts.Add(part.Key, ToPointF(part.Value));
                 }
                 coordinats.Add(parts);
             }
             return coordinats;
+            #endregion
         }
-
+        /// <summary>
+        /// Method to convert the list<double> to pointF
+        /// </summary>
+        /// <param name="part"> coordinate of the Bodypart as a List<double></param>
+        /// <returns></returns>
         public  PointF ToPointF(List<double> part)
         {
             PointF partF = new PointF();
-            partF.X = (float)part[0];
-            partF.Y = (float)part[1];
+            partF.X = (float)Math.Round(part[0]);
+            partF.Y = (float)Math.Round(part[1]);
             return partF;
         }
     }
