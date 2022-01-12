@@ -44,7 +44,7 @@ namespace AutomatischerKamaramann
            
                     OpenFileDialog fd = new OpenFileDialog(); 
                     //Set the title for file dialog
-                    fd.Title = "Bitte wählen Sie eine Videodatei ";
+                    fd.Title = "Bitte wählen Sie ein Video aus ";
                     // Set the filter
                     fd.Filter = "MP4 Video (*.mp4)|*.mp4|WMV Video (*.wmv)|Quick Movie File (*.mov)|*.mov|";
             //display the file dialog 

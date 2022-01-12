@@ -10,31 +10,41 @@ using Emgu.CV;
 using Emgu.CV.Structure;
 
 namespace ApiManager
-{
+{ 
+    /// <summary>
+    /// Class for the encoding/decoding of the images. To enable the communiction with the server
+    /// </summary>
     public class serialisation
     {
-
+        // global Path to read and write the images in it
         string Path = $"{AppDomain.CurrentDomain.BaseDirectory}/image.png";
 
-        //Konvertieren von EmguImage zu System.Drawing.Image
+        /// <summary>
+        /// Method to convert the EmguImage to a Bitmap and saving it as PNG
+        /// </summary>
+        /// <param name="myEmguImage"> The image to be saved </param>
         public void emguToImage(Image<Rgb, Byte> myEmguImage)
         {
-            //damit kein konflikt 
+            //delete the old image in the same location, before saving the new one
             if (File.Exists(Path))
             {
                 File.Delete(Path);
             }
-
             Bitmap bmp = myEmguImage.ToBitmap();
             bmp.Save(Path, ImageFormat.Png);
         }
-
+        /// <summary>
+        /// method to convert the EmguImage to Base64String
+        /// </summary>
+        /// <param name="myEmguImage"> the EmguImage to be converted </param>
+        /// <returns></returns>
         public string ImageEncode(Image<Rgb, Byte> myEmguImage)
         {
+            // saving the image as a PNG
             emguToImage(myEmguImage);
-            //einlesen von dem PNG
+            //reading the saved PNG
             using (Image myImage = Image.FromFile(Path))
-            {
+            {   
                 using (MemoryStream m = new MemoryStream())
                 {
                     myImage.Save(m, myImage.RawFormat);
