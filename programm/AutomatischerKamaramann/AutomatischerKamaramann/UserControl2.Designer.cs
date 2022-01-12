@@ -40,7 +40,12 @@ namespace AutomatischerKamaramann
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.iconButton2 = new FontAwesome.Sharp.IconButton();
             this.iconButton3 = new FontAwesome.Sharp.IconButton();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.BtnPlay = new FontAwesome.Sharp.IconButton();
+            this.BtnPause = new FontAwesome.Sharp.IconButton();
+            this.BtnStop = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.mp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // mp
@@ -50,6 +55,7 @@ namespace AutomatischerKamaramann
             this.mp.Location = new System.Drawing.Point(3, 0);
             this.mp.Name = "mp";
             this.mp.Size = new System.Drawing.Size(454, 470);
+            this.mp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.mp.TabIndex = 0;
             this.mp.TabStop = false;
             // 
@@ -58,7 +64,7 @@ namespace AutomatischerKamaramann
             this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
             this.iconButton1.IconColor = System.Drawing.Color.Black;
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.Location = new System.Drawing.Point(3, 476);
+            this.iconButton1.Location = new System.Drawing.Point(0, 515);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Size = new System.Drawing.Size(216, 23);
             this.iconButton1.TabIndex = 2;
@@ -174,11 +180,68 @@ namespace AutomatischerKamaramann
             this.iconButton3.Text = "Person auswählen";
             this.iconButton3.UseVisualStyleBackColor = true;
             // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(-9, 467);
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(466, 45);
+            this.trackBar1.TabIndex = 13;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // BtnPlay
+            // 
+            this.BtnPlay.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnPlay.FlatAppearance.BorderSize = 0;
+            this.BtnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPlay.IconChar = FontAwesome.Sharp.IconChar.Play;
+            this.BtnPlay.IconColor = System.Drawing.Color.Black;
+            this.BtnPlay.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnPlay.Location = new System.Drawing.Point(463, 395);
+            this.BtnPlay.Name = "BtnPlay";
+            this.BtnPlay.Size = new System.Drawing.Size(50, 50);
+            this.BtnPlay.TabIndex = 14;
+            this.BtnPlay.UseVisualStyleBackColor = true;
+            this.BtnPlay.Click += new System.EventHandler(this.BtnPlay_Click);
+            // 
+            // BtnPause
+            // 
+            this.BtnPause.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnPause.FlatAppearance.BorderSize = 0;
+            this.BtnPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPause.IconChar = FontAwesome.Sharp.IconChar.Pause;
+            this.BtnPause.IconColor = System.Drawing.Color.Black;
+            this.BtnPause.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnPause.Location = new System.Drawing.Point(544, 395);
+            this.BtnPause.Name = "BtnPause";
+            this.BtnPause.Size = new System.Drawing.Size(50, 50);
+            this.BtnPause.TabIndex = 15;
+            this.BtnPause.UseVisualStyleBackColor = true;
+            this.BtnPause.Click += new System.EventHandler(this.BtnPause_Click);
+            // 
+            // BtnStop
+            // 
+            this.BtnStop.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnStop.FlatAppearance.BorderSize = 0;
+            this.BtnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnStop.IconChar = FontAwesome.Sharp.IconChar.Stop;
+            this.BtnStop.IconColor = System.Drawing.Color.Black;
+            this.BtnStop.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnStop.Location = new System.Drawing.Point(624, 395);
+            this.BtnStop.Name = "BtnStop";
+            this.BtnStop.Size = new System.Drawing.Size(50, 50);
+            this.BtnStop.TabIndex = 16;
+            this.BtnStop.UseVisualStyleBackColor = true;
+            this.BtnStop.Click += new System.EventHandler(this.BtnStop_Click);
+            // 
             // UserControl2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
+            this.Controls.Add(this.BtnStop);
+            this.Controls.Add(this.BtnPause);
+            this.Controls.Add(this.BtnPlay);
+            this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.iconButton3);
             this.Controls.Add(this.iconButton2);
             this.Controls.Add(this.radioButton4);
@@ -193,6 +256,7 @@ namespace AutomatischerKamaramann
             this.Name = "UserControl2";
             this.Size = new System.Drawing.Size(825, 541);
             ((System.ComponentModel.ISupportInitialize)(this.mp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,5 +275,9 @@ namespace AutomatischerKamaramann
         private System.Windows.Forms.RadioButton radioButton4;
         private FontAwesome.Sharp.IconButton iconButton2;
         private FontAwesome.Sharp.IconButton iconButton3;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private FontAwesome.Sharp.IconButton BtnPlay;
+        private FontAwesome.Sharp.IconButton BtnPause;
+        private FontAwesome.Sharp.IconButton BtnStop;
     }
 }
