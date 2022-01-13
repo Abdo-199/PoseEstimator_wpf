@@ -14,11 +14,11 @@ namespace ApiManager
 {   /// <summary>
     /// Eine Klasse zur Kommunikation mit der Rest-Api der Posenschätzung 
     /// </summary>
-    public class apiHelper
+    public  class apiHelper
     {  
         // 
         public static serialisation DZ = new serialisation();
-        public List<Dictionary<string, PointF>> getCoordinates(Image<Rgb,Byte> img)
+        public  List<Dictionary<string, PointF>> getCoordinates(Image<Bgr,Byte> img)
         {
             #region ApiCall
             //Encoding the Image to base64str png
@@ -57,7 +57,7 @@ namespace ApiManager
         /// </summary>
         /// <param name="part"> coordinate of the Bodypart as a List<double></param>
         /// <returns></returns>
-        public  PointF ToPointF(List<double> part)
+        public   PointF ToPointF(List<double> part)
         {
             PointF partF = new PointF();
             partF.X = (float)Math.Round(part[0]);

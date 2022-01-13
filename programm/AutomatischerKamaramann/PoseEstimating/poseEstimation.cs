@@ -7,15 +7,15 @@ using Emgu.CV.Structure;
 
 namespace PoseEstimating
 {
-    public class poseEstimation:IApiManager,IVideoToFrames
+    public  class poseEstimation:IApiManager,IVideoToFrames
     {
-        public Image<Bgr, byte> currentFrame { get; set; }
-        public List<Dictionary<string, Point>> Posing(Image<Rgb, Byte> currentFrame)
-        {
-            return null;
-        }
+        public  Image<Bgr, byte> currentFrame { get; set; }
+        //public List<Dictionary<string, Point>> Posing(Image<Rgb, Byte> currentFrame)
+        //{
+        //    return null;
+        //}
         //each person withe an rectangle contouring
-        public List<Rectangle> PoseFraming(List<Dictionary<string, PointF>> coordinates)
+        public  List<Rectangle> PoseFraming(List<Dictionary<string, PointF>> coordinates)
         {
             List<Rectangle> Persons = new List<Rectangle>();
             foreach (var Person in coordinates)
@@ -54,7 +54,7 @@ namespace PoseEstimating
             throw new NotImplementedException();
         }
 
-       
+
         public void inFrames()
         {
             throw new NotImplementedException();

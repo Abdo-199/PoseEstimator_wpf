@@ -16,4 +16,10 @@
     <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ApiManager\ApiManager.csproj" />
+    <ProjectReference Include="..\PoseEstimating\PoseEstimating.csproj" />
+    <ProjectReference Include="..\VideoToFrames\VideoToFrames.csproj" />
+  </ItemGroup>
+
 </Project>

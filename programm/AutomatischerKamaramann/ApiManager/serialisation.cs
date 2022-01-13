@@ -23,7 +23,7 @@ namespace ApiManager
         /// Method to convert the EmguImage to a Bitmap and saving it as PNG
         /// </summary>
         /// <param name="myEmguImage"> The image to be saved </param>
-        public void emguToImage(Image<Rgb, Byte> myEmguImage)
+        public void emguToImage(Image<Bgr, Byte> myEmguImage)
         {
             //delete the old image in the same location, before saving the new one
             if (File.Exists(Path))
@@ -38,7 +38,7 @@ namespace ApiManager
         /// </summary>
         /// <param name="myEmguImage"> the EmguImage to be converted </param>
         /// <returns></returns>
-        public string ImageEncode(Image<Rgb, Byte> myEmguImage)
+        public string ImageEncode(Image<Bgr, Byte> myEmguImage)
         {
             // saving the image as a PNG
             emguToImage(myEmguImage);

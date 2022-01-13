@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Emgu.CV;
 using Emgu.CV.Structure;
+using VideoToFrames;
+using PoseEstimating;
+using ApiManager;
+
 
 
 
@@ -54,7 +58,7 @@ namespace AutomatischerKamaramann
 
                 videocapture = new VideoCapture(fd.FileName);
                 TotalFrames = Convert.ToInt32(videocapture.Get(Emgu.CV.CvEnum.CapProp.FrameCount));
-                TotalFrames = Convert.ToInt32(videocapture.Get(Emgu.CV.CvEnum.CapProp.FrameCount));
+                
                 FPS = Convert.ToInt32(videocapture.Get(Emgu.CV.CvEnum.CapProp.Fps));
                 IsPlaying = true;
                 CurrentFrame = new Mat();
@@ -63,7 +67,19 @@ namespace AutomatischerKamaramann
                 trackBar1.Maximum = TotalFrames - 1;
                 trackBar1.Value = 0;
                 Playvideo();
+                #region test
+                inFrames InFrames = new inFrames();
+                List<Image<Bgr, Byte>> ImagesList =InFrames.vidToFrames(fd.FileName);
+                poseEstimation posing = new poseEstimation();
+                apiHelper helper = new apiHelper();
+                List<List<Rectangle>> Rectangles = new List<List<Rectangle>>();
+                foreach (Image<Bgr,Byte> img in ImagesList)
+                {
+                    Rectangles.Add(posing.PoseFraming(helper.getCoordinates(img)));
+                }
 
+
+                #endregion
 
 
 
@@ -98,16 +114,11 @@ namespace AutomatischerKamaramann
                 {
                     videocapture.Set(Emgu.CV.CvEnum.CapProp.PosFrames, CurrentFrameNo);
                     videocapture.Read(CurrentFrame);
-                    mp.Image = CurrentFrame.ToBitmap();
 
+                    mp.Image = CurrentFrame.ToBitmap();
                     trackBar1.Value = CurrentFrameNo;
                     CurrentFrameNo += 1;
                     await Task.Delay(100/FPS);
-
-
-
-
-
                 }
 //
 
