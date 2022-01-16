@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ApiManager\ApiManager.csproj" />
     <ProjectReference Include="..\CommonInterfaces\CommonInterfaces.csproj" />
   </ItemGroup>
 

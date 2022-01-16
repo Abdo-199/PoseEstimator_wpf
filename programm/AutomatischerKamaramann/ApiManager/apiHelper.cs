@@ -18,7 +18,7 @@ namespace ApiManager
     {  
         // 
         public static serialisation DZ = new serialisation();
-        public  List<Dictionary<string, PointF>> getCoordinates(Image<Bgr,Byte> img)
+        public  List<Dictionary<string, Point>> getCoordinates(Image<Bgr,Byte> img)
         {
             #region ApiCall
             //Encoding the Image to base64str png
@@ -37,15 +37,15 @@ namespace ApiManager
             //deserializing the JSON string into List<Dictionary<string,List<double>>>
             var deContent = JsonConvert.DeserializeObject<List<Dictionary<string, List<double>>>>(content);
             //new list with PointF instead of List<double>
-            List<Dictionary<string, PointF>> coordinats = new List<Dictionary<string, PointF>>();
+            List<Dictionary<string, Point>> coordinats = new List<Dictionary<string, Point>>();
             //converting the List<double> part </double> to a pointf
             //to get valid coordinates for the drawing of the rectangle arround each person
             foreach (var person in deContent)
             {   // new Dictionary for each Person
-                Dictionary<string, PointF> parts = new Dictionary<string, PointF>();
+                Dictionary<string, Point> parts = new Dictionary<string, Point>();
                 foreach (var part in person)
                 {       
-                    parts.Add(part.Key, ToPointF(part.Value));
+                    parts.Add(part.Key, ToPoint(part.Value));
                 }
                 coordinats.Add(parts);
             }
@@ -53,16 +53,17 @@ namespace ApiManager
             #endregion
         }
         /// <summary>
-        /// Method to convert the list<double> to pointF
+        /// Method to convert the list<double> to point 
+        /// converting to PointF doesn't make any sense, because we need int points to draw the rectangle later
         /// </summary>
         /// <param name="part"> coordinate of the Bodypart as a List<double></param>
         /// <returns></returns>
-        public   PointF ToPointF(List<double> part)
+        public   Point ToPoint(List<double> part)
         {
-            PointF partF = new PointF();
-            partF.X = (float)Math.Round(part[0]);
-            partF.Y = (float)Math.Round(part[1]);
-            return partF;
+            Point partp = new Point();
+            partp.X = (int)Math.Round((part[0]));
+            partp.Y = (int)Math.Round((part[1]));
+            return partp;
         }
     }
 }

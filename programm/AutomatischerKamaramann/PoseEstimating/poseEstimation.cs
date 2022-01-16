@@ -4,26 +4,49 @@ using System.Drawing;
 using CommonInterfaces;
 using Emgu.CV;
 using Emgu.CV.Structure;
+using ApiManager;
 
 namespace PoseEstimating
 {
     public  class poseEstimation:IApiManager,IVideoToFrames
     {
         public  Image<Bgr, byte> currentFrame { get; set; }
-        //public List<Dictionary<string, Point>> Posing(Image<Rgb, Byte> currentFrame)
-        //{
-        //    return null;
-        //}
-        //each person withe an rectangle contouring
-        public  List<Rectangle> PoseFraming(List<Dictionary<string, PointF>> coordinates)
+        /// <summary>
+        /// Method to get the current frame from the GUI and return the Image with a drawen rectangle
+        /// </summary>
+        /// <param name="currentFrame"></param>
+        /// <returns></returns>
+        public Image<Bgr,Byte> Posing(Image<Bgr, Byte> currentFrame)
+        {
+            apiHelper helper = new apiHelper();
+            List<Rectangle> persons = PoseFraming(helper.getCoordinates(currentFrame));
+           
+
+            if (persons.Count > 0)
+            {
+                //draw a rectangle around each face
+                foreach (Rectangle person in persons)
+                {
+                    CvInvoke.Rectangle(currentFrame, person, new Bgr(Color.Red).MCvScalar, 2);
+                }
+                //DrawItemEventArgs 
+            }
+            return currentFrame;
+        }
+        /// <summary>
+        /// method to draw a rectangle arround each person
+        /// </summary>
+        /// <param name="coordinates"></param>
+        /// <returns></returns>
+        public List<Rectangle> PoseFraming(List<Dictionary<string, Point>> coordinates)
         {
             List<Rectangle> Persons = new List<Rectangle>();
             foreach (var Person in coordinates)
             {
-                float minX = Person["nose"].X;
-                float maxX = 0;
-                float minY = Person["nose"].Y;
-                float maxY = 0;
+                int minX = Person["nose"].X;
+                int maxX = 0;
+                int minY = Person["nose"].Y;
+                int maxY = 0;
                 foreach (var part in Person)
                 {
                     if (part.Value.X < minX)
@@ -38,17 +61,19 @@ namespace PoseEstimating
                     {
                         minY = part.Value.Y;
                     }
-                    if (part.Value.Y > minY)
+                    if (part.Value.Y > maxY)
                     {
                         maxY = part.Value.Y;
                     }
 
                 }
-                Persons.Add(new Rectangle((int)Math.Round(minX), (int)Math.Round(maxY), (int)Math.Round(maxX - minX), (int)Math.Round(maxY - minY)));
+                //because the heighest coordinate in the list is one of the eyes coordinate 
+                //and we need to draw the Rectangle arround the whole body
+                int Margin = Person["left_shoulder"].Y - Person["right_eye"].Y;
+                Persons.Add(new Rectangle((minX), (minY - Margin),(maxX - minX), (maxY - minY) + Margin));
             }
             return Persons;
         }
-
         public void getPoseestimation()
         {
             throw new NotImplementedException();
