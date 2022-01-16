@@ -57,25 +57,39 @@ namespace AutomatischerKamaramann
             {
 
                 videocapture = new VideoCapture(fd.FileName);
-                TotalFrames = Convert.ToInt32(videocapture.Get(Emgu.CV.CvEnum.CapProp.FrameCount));
+                //TotalFrames = Convert.ToInt32(videocapture.Get(Emgu.CV.CvEnum.CapProp.FrameCount));
                 
-                FPS = Convert.ToInt32(videocapture.Get(Emgu.CV.CvEnum.CapProp.Fps));
-                IsPlaying = true;
-                CurrentFrame = new Mat();
-                CurrentFrameNo = 0;
-                trackBar1.Minimum = 0;
-                trackBar1.Maximum = TotalFrames - 1;
-                trackBar1.Value = 0;
-                Playvideo();
+                //FPS = Convert.ToInt32(videocapture.Get(Emgu.CV.CvEnum.CapProp.Fps));
+                //IsPlaying = true;
+                //CurrentFrame = new Mat();
+                //CurrentFrameNo = 0;
+                //trackBar1.Minimum = 0;
+                //trackBar1.Maximum = TotalFrames - 1;
+                //trackBar1.Value = 0;
+                //Playvideo();
                 #region test
                 inFrames InFrames = new inFrames();
                 List<Image<Bgr, Byte>> ImagesList =InFrames.vidToFrames(fd.FileName);
                 poseEstimation posing = new poseEstimation();
                 apiHelper helper = new apiHelper();
-                List<List<Rectangle>> Rectangles = new List<List<Rectangle>>();
+               // List<Rectangle> Faces = new List<Rectangle>();
+               // List<Faces> Persons = new List<Faces>();
                 foreach (Image<Bgr,Byte> img in ImagesList)
                 {
-                    Rectangles.Add(posing.PoseFraming(helper.getCoordinates(img)));
+                    //List<Rectangle> faces = posing.PoseFraming(helper.getCoordinates(img));
+                   
+                    //if (faces.Count > 0)
+                    //{
+                    //    //draw square around each face
+                    //    foreach (Rectangle face in faces)
+                    //    {
+                    //        CvInvoke.Rectangle(img, face, new Bgr(Color.Red).MCvScalar, 2);
+                    //        // BildAuschneiden.Ausschneiden(currentFrame, face);
+                    //    }
+                    //    //DrawItemEventArgs 
+                    //}
+                    //}
+                    mp.Image = img.ToBitmap();
                 }
 
 
