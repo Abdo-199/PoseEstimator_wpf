@@ -5,6 +5,7 @@ using Emgu.CV.Structure;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Imaging;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace AutomatischerKamaramann
             {
                 using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "JPG|*.jpg|JPEG|*.jpeg|PNG|*|Bitmap|*.bmp", ValidateNames = true, Multiselect = false })
                 {
+                    ofd.Title = "bitte wählen Sie ein Image Datei aus";
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
                         string filePath = ofd.FileName;
@@ -78,6 +80,23 @@ namespace AutomatischerKamaramann
         {
             PoseEstimationEnabled = true;
             pictureBox1.Image = posing.Posing(emguImage).ToBitmap();
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (this.pictureBox1.Image == null)
+                MessageBox.Show("Bitte wählen Sie erstmal ein Video datei aus .");
+            else
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "JPEG files (*.jpeg) |*.jpeg"; //saving files in JPEG Format
+                if (DialogResult.OK == sfd.ShowDialog())
+                {
+                    this.pictureBox1.Image.Save(sfd.FileName, ImageFormat.Jpeg);
+                    MessageBox.Show("Photo erfolgreich gespeichert.");
+                }
+            }
 
         }
     }

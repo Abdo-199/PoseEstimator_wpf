@@ -30,6 +30,8 @@ namespace AutomatischerKamaramann
         bool IsPlaying = false;
         int TotalFrames;
         int CurrentFrameNo;
+        int FrameWidth;
+        int FrameHeight;
         Mat CurrentFrame;
         int FPS;
         
@@ -184,5 +186,54 @@ namespace AutomatischerKamaramann
             mp.Image = null;
             mp.Invalidate();
         }
+
+        private void BtnSaveVideo_Click(object sender, EventArgs e)
+        {
+            if (videocapture == null)
+                MessageBox.Show("Bitte wählen Sie erstmal ein Video datei aus ");
+            else
+            {
+                BtnPause.PerformClick();
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.DefaultExt = "mp4";
+                sfd.AddExtension = true;
+                sfd.Filter = "MP4 files|*.mp4";
+                sfd.FileName = "";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        Mat cframe = new Mat(); //current frame
+                        int cfn = 0; //current frame no
+                        VideoWriter vwriter = new VideoWriter(sfd.FileName, this.FPS, new Size(this.FrameWidth, this.FrameHeight), true);
+                        progressBarSave.Visible = true;
+                        progressBarSave.Minimum = cfn;
+                        progressBarSave.Maximum = this.TotalFrames;
+                        progressBarSave.Value = cfn;
+                        this.Cursor = Cursors.WaitCursor;
+                        while (cfn < TotalFrames)
+                        {
+                            videocapture.Set(Emgu.CV.CvEnum.CapProp.PosFrames, cfn);
+                            videocapture.Read(cframe);
+                            //Image img = cframe.ToBitmap();
+                            vwriter.Write(cframe);
+                            cfn++;
+
+                            if (cfn < TotalFrames)
+                                progressBarSave.Value = cfn;
+                        }
+                        vwriter.Dispose();
+                        this.Cursor = Cursors.Default;
+                        MessageBox.Show("Video erfolgreich gespeichert.");
+                        progressBarSave.Visible = false;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+
+         }
     }
 }
