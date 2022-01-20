@@ -19,7 +19,7 @@ namespace AutomatischerKamaramann
     public partial class UserControl1 : UserControl
     {
         Image<Bgr, Byte> emguImage = null;
-        poseEstimation posing = new poseEstimation();
+        PoseEstimation posing = new PoseEstimation();
         bool PoseEstimationEnabled = false;
         public UserControl1()
         {
@@ -51,9 +51,10 @@ namespace AutomatischerKamaramann
                         pictureBox1.Image = emguImage.ToBitmap();
                         if (PoseEstimationEnabled)
                         {   //update the Image to the Image with Rectangles
-                            emguImage = posing.Posing(emguImage);
+                            emguImage = posing.getPoses(emguImage);
                             pictureBox1.Image = emguImage.ToBitmap();
                         }
+                       
                     }
 
                 }
@@ -79,7 +80,7 @@ namespace AutomatischerKamaramann
         private void Radio_PoseEstimation_CheckedChanged(object sender, EventArgs e)
         {
             PoseEstimationEnabled = true;
-            pictureBox1.Image = posing.Posing(emguImage).ToBitmap();
+            pictureBox1.Image = posing.getPoses(emguImage).ToBitmap();
 
         }
 
