@@ -9,15 +9,17 @@ using Emgu.CV;
 using Emgu.CV.Structure;
 using Newtonsoft.Json;
 using RestSharp;
+using CommonInterfaces;
+
 
 namespace ApiManager
 {   /// <summary>
     /// Eine Klasse zur Kommunikation mit der Rest-Api der Posenschätzung 
     /// </summary>
-    public  class apiHelper
+    public  class ApiHelper:IApiManager
     {  
         // 
-        public static serialisation DZ = new serialisation();
+        public static Serialisation DZ = new Serialisation();
         public  List<Dictionary<string, Point>> getCoordinates(Image<Bgr,Byte> img)
         {
             #region ApiCall

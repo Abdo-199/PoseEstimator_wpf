@@ -8,20 +8,18 @@ using ApiManager;
 
 namespace PoseEstimating
 {
-    public  class poseEstimation:IApiManager,IVideoToFrames
+    public  class PoseEstimation:IPoseEstimating
     {
-        public  Image<Bgr, byte> currentFrame { get; set; }
+       
         /// <summary>
-        /// Method to get the current frame from the GUI and return the Image with a drawen rectangle
+        /// Method to get the current frame from the GUI and return the Image with a drawn rectangle
         /// </summary>
         /// <param name="currentFrame"></param>
         /// <returns></returns>
-        public Image<Bgr,Byte> Posing(Image<Bgr, Byte> currentFrame)
+        public Image<Bgr,Byte> getPoses(Image<Bgr, Byte> currentFrame)
         {
-            apiHelper helper = new apiHelper();
+            ApiHelper helper = new ApiHelper();
             List<Rectangle> persons = PoseFraming(helper.getCoordinates(currentFrame));
-           
-
             if (persons.Count > 0)
             {
                 //draw a rectangle around each face
@@ -75,12 +73,6 @@ namespace PoseEstimating
             return Persons;
         }
         public void getPoseestimation()
-        {
-            throw new NotImplementedException();
-        }
-
-
-        public void inFrames()
         {
             throw new NotImplementedException();
         }
