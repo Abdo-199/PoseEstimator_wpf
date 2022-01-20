@@ -14,9 +14,9 @@ namespace FaceDetection
         private Mat grayImage = null;
 
 
-        public FaceDetection(CascadeClassifier classifier)
+        public FaceDetection()  
         {
-            faceCascadeClassifier = classifier;
+           
         }
 
         public Rectangle[] FaceDetVid(List<Image<Bgr, Byte>> ListFrames)
@@ -35,20 +35,20 @@ namespace FaceDetection
                 {
                     foreach (var face in faces)
                     {
-                        CvInvoke.Rectangle(Cframe, face, new Bgr(Color.Green).MCvScalar,2);
+                        CvInvoke.Rectangle(Cframe, face, new Bgr(Color.Green).MCvScalar, 2);
                         // VideoCropping Methode fehlt
                     }
-                    
+
                 }
             }
-            
+
             return faces;
         }
 
         public Rectangle[] FaceDetIm(Image<Bgr, Byte> Image)
         {
-            CvInvoke.CvtColor(Image,grayImage,ColorConversion.Bgr2Gray);
-            CvInvoke.EqualizeHist(grayImage,grayImage);
+            CvInvoke.CvtColor(Image, grayImage, ColorConversion.Bgr2Gray);
+            CvInvoke.EqualizeHist(grayImage, grayImage);
 
             Rectangle[] faces = faceCascadeClassifier.DetectMultiScale(grayImage, 1.1, 3, Size.Empty, Size.Empty);
 
@@ -56,7 +56,7 @@ namespace FaceDetection
             {
                 foreach (var face in faces)
                 {
-                    CvInvoke.Rectangle(Image,face,new Bgr(Color.Green).MCvScalar,2);
+                    CvInvoke.Rectangle(Image, face, new Bgr(Color.Green).MCvScalar, 2);
                     //PhotoCropping Mehtode fehlt
                 }
             }
@@ -65,5 +65,7 @@ namespace FaceDetection
         }
 
     }
+
+    
 }
 
