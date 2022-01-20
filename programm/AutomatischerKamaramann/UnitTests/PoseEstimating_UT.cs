@@ -16,21 +16,21 @@ namespace UnitTests
         public void PoseFraming_Test()
         {
             //arrange
-            poseEstimation poseEstimation=new poseEstimation();
+            PoseEstimation poseEstimation=new PoseEstimation();
             //assemble
             // preparing an input parameter for the Method
-            List<Dictionary<string,PointF>> assemblingList =new List<Dictionary<string, PointF>>();
-            Dictionary<string, PointF> firstPerson=new Dictionary<string, PointF>()
+            List<Dictionary<string,Point>> assemblingList =new List<Dictionary<string, Point>>();
+            Dictionary<string, Point> firstPerson=new Dictionary<string, Point>()
             {
-                {"nose",new PointF(7.909f,5.606f)},{"Left_eye",new PointF(9.909f,10.606f)},
-                {"right_eye",new PointF(11.909f,3.606f)},{"Left_ear",new PointF(15.909f,2.606f)}
-                ,{"right_ear",new PointF(70.909f,20.606f)}
+                {"nose",new Point(688,852)},{"Left_eye",new Point(721,825)},
+                {"right_eye",new Point(659,828)},{"left_ear",new Point(759,845)}
+                ,{"right_ear",new Point(626,854) },{"left_shoulder",new Point(855,1014)}
             };
-            Dictionary<string, PointF> secondPerson = new Dictionary<string, PointF>()
+            Dictionary<string, Point> secondPerson = new Dictionary<string, Point>()
             {
-                {"nose",new PointF(5.909f,5.606f)},{"Left_eye",new PointF(9.909f,10.606f)},
-                {"right_eye",new PointF(11.909f,3.606f)},{"Left_ear",new PointF(15.909f,2.606f)}
-                ,{"right_ear",new PointF(70.909f,30.606f)}
+                {"nose",new Point(393,870)},{"left_eye",new Point(421,835)},
+                {"right_eye",new Point(366,835)},{"left_ear",new Point(464,834)}
+                ,{"right_ear",new Point(323,825) },{"left_shoulder",new Point(543,984)}
             };
             assemblingList.Add(firstPerson);
             assemblingList.Add(secondPerson);
@@ -38,8 +38,8 @@ namespace UnitTests
             //list of two rectangles expected 
             List<Rectangle> expected= new List<Rectangle>()
             {
-                {new Rectangle((int)Math.Round(7.909f),(int)Math.Round(20.606f),(int)Math.Round(70.909f-7.909f),(int)Math.Round(20.606f-2.606f))},
-                {new Rectangle((int)Math.Round(5.909f),(int)Math.Round(30.606f),(int)Math.Round(70.909f-5.909f),(int)Math.Round(30.606f-2.606f))}
+                {new Rectangle(626,825-(1014-828),(855-626),(1014-825)+(1014-828))},
+                {new Rectangle(323,825-(984-835),(543-323),(984-825)+(984-835))}
 
             };
            Assert.AreEqual(expected,result);
