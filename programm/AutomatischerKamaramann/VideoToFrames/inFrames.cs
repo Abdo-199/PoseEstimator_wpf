@@ -30,6 +30,10 @@ namespace VideoToFrames
 
                 while (ProCes)
                 {
+                    
+                    if (ListFrames.Count == Totalframes)
+                        return ListFrames;
+
                     Image<Bgr, Byte> frame = capture.QueryFrame().ToImage<Bgr, Byte>();
 
                     if (frame != null)
