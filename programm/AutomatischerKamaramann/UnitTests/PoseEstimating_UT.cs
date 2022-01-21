@@ -16,7 +16,7 @@ namespace UnitTests
         public void PoseFraming_Test()
         {
             //arrange
-            PoseEstimation poseEstimation=new PoseEstimation();
+            poseEstimation poseEstimation=new poseEstimation();
             //assemble
             // preparing an input parameter for the Method
             List<Dictionary<string,Point>> assemblingList =new List<Dictionary<string, Point>>();

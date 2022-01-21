@@ -19,7 +19,7 @@ namespace AutomatischerKamaramann
     public partial class UserControl1 : UserControl
     {
         Image<Bgr, Byte> emguImage = null;
-        PoseEstimation posing = new PoseEstimation();
+        poseEstimation posing = new poseEstimation();
         bool PoseEstimationEnabled = false;
         public UserControl1()
         {
