@@ -10,34 +10,16 @@ namespace PoseEstimating
 {
     public  class poseEstimation:IPoseEstimating
     {
-       
-        /// <summary>
-        /// Method to get the current frame from the GUI and return the Image with a drawn rectangle
-        /// </summary>
-        /// <param name="currentFrame"></param>
-        /// <returns></returns>
-        public Image<Bgr,Byte> getPoses(Image<Bgr, Byte> currentFrame)
-        {
-            apiHelper helper = new apiHelper();
-            List<Rectangle> persons = PoseFraming(helper.getCoordinates(currentFrame));
-            if (persons.Count > 0)
-            {
-                //draw a rectangle around each face
-                foreach (Rectangle person in persons)
-                {
-                    CvInvoke.Rectangle(currentFrame, person, new Bgr(Color.Red).MCvScalar, 2);
-                }
-                //DrawItemEventArgs 
-            }
-            return currentFrame;
-        }
         /// <summary>
         /// method to draw a rectangle arround each person
         /// </summary>
         /// <param name="coordinates"></param>
         /// <returns></returns>
-        public List<Rectangle> PoseFraming(List<Dictionary<string, Point>> coordinates)
+        public List<Rectangle> getPoses(Image<Bgr,Byte> currentFrame)
         {
+            apiHelper helper = new apiHelper();
+
+            List<Dictionary<string, Point>> coordinates = helper.getCoordinates(currentFrame);
             List<Rectangle> persons = new List<Rectangle>();
             foreach (var person in coordinates)
             {

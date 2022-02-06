@@ -26,7 +26,7 @@ namespace ApiManager
             //Encoding the Image to base64str png
             string base64string = DZ.ImageEncode(img);
             //request
-            RestClient client = new RestClient("http://141.45.150.62:4713/predict");
+            RestClient client = new RestClient("http://141.45.150.62:4711/predict");
             RestRequest request = new RestRequest(Method.PUT);
             request.RequestFormat = DataFormat.Json;
             request.AddHeader("Content-Type", " application/json");

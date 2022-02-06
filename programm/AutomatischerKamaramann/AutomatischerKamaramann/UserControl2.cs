@@ -68,15 +68,15 @@ namespace AutomatischerKamaramann
                 trackBar1.Minimum = 0;
                 trackBar1.Maximum = TotalFrames - 1;
                 trackBar1.Value = 0;
-                Playvideo();
-                #region easier way to play the video and call the Methods
+               // Playvideo();
+                //#region easier way to play the video and call the Methods
                 //inFrames framesGrapper = new inFrames();
-                //PoseEstimation pose = new PoseEstimation();
+                //poseEstimation pose = new poseEstimation();
                 //List<Image<Bgr, Byte>> Frames = framesGrapper.vidToFrames(fd.FileName);
                 //List<Image<Bgr, Byte>> newFrames = new List<Image<Bgr, byte>>();
                 //foreach (Image<Bgr, Byte> Frame in Frames)
                 //{
-                //    newFrames.Add(pose.Posing(Frame));
+                //    newFrames.Add(pose.getPoses(Frame));
                 //}
                 //foreach (Image<Bgr, Byte> Frame in newFrames)
                 //{
@@ -84,7 +84,7 @@ namespace AutomatischerKamaramann
                 //    System.Threading.Thread.Sleep(33);
                 //    Application.DoEvents();
                 //}
-                #endregion
+                //#endregion
                 // Get the selected file path 
                 path = fd.FileName;
                 // set the selected imput file path to Textbox`"textbox1"
