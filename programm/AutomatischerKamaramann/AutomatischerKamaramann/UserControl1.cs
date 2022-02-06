@@ -105,7 +105,7 @@ namespace AutomatischerKamaramann
             }
             catch (Exception exception)
             {
-                MessageBox.Show("please select an Image");
+                MessageBox.Show("Bitte wählen Sie ein Image Datei aus");
                 throw;
             }
             
@@ -134,7 +134,7 @@ namespace AutomatischerKamaramann
                 if (DialogResult.OK == sfd.ShowDialog())
                 {
                     this.pictureBox1.Image.Save(sfd.FileName, ImageFormat.Jpeg);
-                    MessageBox.Show("Photo erfolgreich gespeichert.");
+                    MessageBox.Show("Foto erfolgreich gespeichert.");
                 }
             }
 

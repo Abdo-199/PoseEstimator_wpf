@@ -120,7 +120,7 @@ namespace AutomatischerKamaramann
             leftBorderBtn.Visible = false;
             iconCurrentChildForm.IconChar = IconChar.Home;
             iconCurrentChildForm.IconColor = Color.MediumPurple;
-            lblTitleChildForm.Text = "Home";
+            lblTitleChildForm.Text = "Startseite";
 
 
         }
