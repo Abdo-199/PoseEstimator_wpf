@@ -243,7 +243,7 @@ namespace AutomatischerKamaramann
             this.BtnSaveVideo.Name = "BtnSaveVideo";
             this.BtnSaveVideo.Size = new System.Drawing.Size(115, 23);
             this.BtnSaveVideo.TabIndex = 17;
-            this.BtnSaveVideo.Text = "Save";
+            this.BtnSaveVideo.Text = "Speichern";
             this.BtnSaveVideo.UseVisualStyleBackColor = true;
             this.BtnSaveVideo.Click += new System.EventHandler(this.BtnSaveVideo_Click);
             // 
