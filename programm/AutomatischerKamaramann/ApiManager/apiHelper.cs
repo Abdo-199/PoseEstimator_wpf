@@ -16,10 +16,10 @@ namespace ApiManager
 {   /// <summary>
     /// Eine Klasse zur Kommunikation mit der Rest-Api der Posenschätzung 
     /// </summary>
-    public  class ApiHelper:IApiManager
+    public  class apiHelper:IApiManager
     {  
         // 
-        public static Serialisation DZ = new Serialisation();
+        public static serialisation DZ = new serialisation();
         public  List<Dictionary<string, Point>> getCoordinates(Image<Bgr,Byte> img)
         {
             #region ApiCall
