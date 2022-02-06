@@ -11,6 +11,6 @@ namespace CommonInterfaces
 {
     public interface IFaceDetection
     {
-        public Rectangle[] FaceDetIm(Image<Bgr, byte> image);
+        public List<Rectangle> FaceDetIm(Image<Bgr, byte> image);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Net.Http;
 using CommonInterfaces;
@@ -11,37 +12,32 @@ namespace FaceDetection
 {
     public class DetectFace : IFaceDetection
     {
-        public Rectangle[] FacesExtracted;
-
         private CascadeClassifier faceCascadeClassifier = new CascadeClassifier("haarcascade_frontalface_alt.xml");
 
-        public Image<Bgr, byte> FaceDetIm(Image<Bgr, byte> image)
+        public List<Rectangle> FaceDetIm(Image<Bgr, byte> image)
         {
-            
-               var grayImage = image.Convert<Gray, byte>();
+            List<Rectangle> facesList = new List<Rectangle>();
 
-                CvInvoke.CvtColor(image, grayImage, ColorConversion.Bgr2Gray);
-                CvInvoke.EqualizeHist(grayImage, grayImage);
+            var grayImage = image.Convert<Gray, byte>();
+            CvInvoke.CvtColor(image, grayImage, ColorConversion.Bgr2Gray);
+            CvInvoke.EqualizeHist(grayImage, grayImage);
 
-                Rectangle[] faces = faceCascadeClassifier.DetectMultiScale(grayImage, 1.1, 4);
-                FacesExtracted = faces;
+            Rectangle[] faces = faceCascadeClassifier.DetectMultiScale(grayImage, 1.1, 4);
 
-                if (faces.Length > 0)
+            if (faces.Length > 0)
+            {
+                foreach (var face in faces)
                 {
-                    foreach (var face in faces)
-                    {
-                        CvInvoke.Rectangle(image, face, new Bgr(Color.DarkSlateBlue).MCvScalar, 2);
-                    }
+                    facesList.Add(face);
                 }
-
-                return image;
-
-
+            }
+         
+            return facesList;
 
         }
 
-    }
 
+    }
 
 }
 
