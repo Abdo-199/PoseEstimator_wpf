@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomatischerKamaramann", "AutomatischerKamaramann\AutomatischerKamaramann.csproj", "{1F9505DE-8CC2-466A-B362-C5CA2191E7EE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1364284A-7F7B-483E-953C-1D8640D8D9FF} = {1364284A-7F7B-483E-953C-1D8640D8D9FF}
+		{CE5E87B4-A3DC-407D-A762-5E18F62DFB6D} = {CE5E87B4-A3DC-407D-A762-5E18F62DFB6D}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonInterfaces", "CommonInterfaces\CommonInterfaces.csproj", "{A2F0D31E-36CA-4360-955A-7B672955176C}"
 EndProject

@@ -9,18 +9,29 @@ using System.Drawing.Imaging;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.Animation;
 using PoseEstimating;
+using FaceDetection;
+
+
+
 
 namespace AutomatischerKamaramann
 {
     public partial class UserControl1 : UserControl
     {
-        Image<Bgr, Byte> emguImage = null;
+        Image<Bgr, byte> emguImage = null;
+
+        DetectFace faceDetection = new DetectFace();
         PoseEstimation posing = new PoseEstimation();
+
         bool PoseEstimationEnabled = false;
+        bool FaceDetectionEnabled = false;
+
         public UserControl1()
         {
             InitializeComponent();
@@ -31,14 +42,18 @@ namespace AutomatischerKamaramann
 
             try
             {
-                using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "JPG|*.jpg|JPEG|*.jpeg|PNG|*|Bitmap|*.bmp", ValidateNames = true, Multiselect = false })
+                using OpenFileDialog ofd = new OpenFileDialog()
+                    { Filter = "JPG|*.jpg|JPEG|*.jpeg|PNG|*|Bitmap|*.bmp", ValidateNames = true, Multiselect = false };
                 {
                     ofd.Title = "bitte wählen Sie ein Image Datei aus";
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
+
                         string filePath = ofd.FileName;
                         emguImage = new Image<Bgr, byte>(filePath);
-                        #region resisizing 
+
+                        #region resisizing
+
                         double oldHeight = emguImage.Height;
                         double oldWidth = emguImage.Width;
                         double newHeight = pictureBox1.Height;
@@ -47,14 +62,31 @@ namespace AutomatischerKamaramann
                         //resizing the width of the PicBox
                         pictureBox1.Width = (int)newWidth;
                         emguImage = emguImage.Resize((int)newWidth, (int)newHeight, Inter.Cubic);
+
                         #endregion
+
+
+
+                        
                         pictureBox1.Image = emguImage.ToBitmap();
+
+                        
+
+                        if (FaceDetectionEnabled)//muss noch nach Oben  
+                        {
+                            //emguImage = faceDetection.FaceDetIm(emguImage);
+
+                            pictureBox1.Image = emguImage.ToBitmap();
+
+                        }
+                        
                         if (PoseEstimationEnabled)
-                        {   //update the Image to the Image with Rectangles
+                        {
+                            //update the Image to the Image with Rectangles
                             emguImage = posing.getPoses(emguImage);
                             pictureBox1.Image = emguImage.ToBitmap();
                         }
-                       
+
                     }
 
                 }
@@ -67,10 +99,18 @@ namespace AutomatischerKamaramann
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                FaceDetectionEnabled = true;
+                pictureBox1.Image = faceDetection.FaceDetIm(emguImage).ToBitmap();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("please select an Image");
+                throw;
+            }
+            
         }
-
-        
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -100,5 +140,7 @@ namespace AutomatischerKamaramann
             }
 
         }
+
     }
 }
+
