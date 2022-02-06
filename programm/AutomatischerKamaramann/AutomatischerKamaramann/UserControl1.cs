@@ -25,7 +25,9 @@ namespace AutomatischerKamaramann
     public partial class UserControl1 : UserControl
     {
         Image<Bgr, Byte> emguImage = null;
-        PoseEstimation posing = new PoseEstimation();
+        poseEstimation posing = new poseEstimation();
+        DetectFace fd = new DetectFace();
+
         bool PoseEstimationEnabled = false;
         bool FaceDetectionEnabled = false;
 
@@ -99,7 +101,7 @@ namespace AutomatischerKamaramann
             try
             {
                 FaceDetectionEnabled = true;
-                pictureBox1.Image = faceDetection.FaceDetIm(emguImage).ToBitmap();
+                pictureBox1.Image = fd.FaceDetIm(emguImage).ToBitmap();
             }
             catch (Exception exception)
             {
