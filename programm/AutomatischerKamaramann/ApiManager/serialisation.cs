@@ -14,7 +14,7 @@ namespace ApiManager
     /// <summary>
     /// Class for the encoding/decoding of the images. To enable the communiction with the server
     /// </summary>
-    public class Serialisation
+    public class serialisation
     {
         // global Path to read and write the images in it
         string Path = $"{AppDomain.CurrentDomain.BaseDirectory}/image.png";

@@ -24,11 +24,8 @@ namespace AutomatischerKamaramann
 {
     public partial class UserControl1 : UserControl
     {
-        Image<Bgr, byte> emguImage = null;
-
-        DetectFace faceDetection = new DetectFace();
+        Image<Bgr, Byte> emguImage = null;
         PoseEstimation posing = new PoseEstimation();
-
         bool PoseEstimationEnabled = false;
         bool FaceDetectionEnabled = false;
 

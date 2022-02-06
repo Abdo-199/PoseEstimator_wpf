@@ -8,7 +8,7 @@ using ApiManager;
 
 namespace PoseEstimating
 {
-    public  class PoseEstimation:IPoseEstimating
+    public  class poseEstimation:IPoseEstimating
     {
        
         /// <summary>
@@ -18,7 +18,7 @@ namespace PoseEstimating
         /// <returns></returns>
         public Image<Bgr,Byte> getPoses(Image<Bgr, Byte> currentFrame)
         {
-            ApiHelper helper = new ApiHelper();
+            apiHelper helper = new apiHelper();
             List<Rectangle> persons = PoseFraming(helper.getCoordinates(currentFrame));
             if (persons.Count > 0)
             {
@@ -38,14 +38,14 @@ namespace PoseEstimating
         /// <returns></returns>
         public List<Rectangle> PoseFraming(List<Dictionary<string, Point>> coordinates)
         {
-            List<Rectangle> Persons = new List<Rectangle>();
-            foreach (var Person in coordinates)
+            List<Rectangle> persons = new List<Rectangle>();
+            foreach (var person in coordinates)
             {
-                int minX = Person["nose"].X;
+                int minX = person["nose"].X;
                 int maxX = 0;
-                int minY = Person["nose"].Y;
+                int minY = person["nose"].Y;
                 int maxY = 0;
-                foreach (var part in Person)
+                foreach (var part in person)
                 {
                     if (part.Value.X < minX)
                     {
@@ -65,16 +65,13 @@ namespace PoseEstimating
                     }
 
                 }
-                //because the heighest coordinate in the list is one of the eyes coordinate 
-                //and we need to draw the Rectangle arround the whole body
-                int Margin = Person["left_shoulder"].Y - Person["right_eye"].Y;
-                Persons.Add(new Rectangle((minX), (minY - Margin),(maxX - minX), (maxY - minY) + Margin));
+                //because the highest coordinate in the list is one of the eyes coordinate 
+                //and we need to draw the Rectangle around the whole body
+                int margin = person["left_shoulder"].Y - person["right_eye"].Y;
+                persons.Add(new Rectangle((minX), (minY - margin),(maxX - minX), (maxY - minY) + margin));
             }
-            return Persons;
+            return persons;
         }
-        public void getPoseestimation()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
