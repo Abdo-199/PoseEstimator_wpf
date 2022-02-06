@@ -9,9 +9,20 @@ using Emgu.CV.Structure;
 
 namespace Croping
 {
-    class drawing
+    public class drawing
     {
-        public void drawRectFace(Rectangle[] faces, Image<Rgb, Byte> currentFrame) { }
-        public void drawRectPose(Rectangle[] Poses, Image<Rgb, Byte> currentFrame) { }
+        public Image<Bgr,Byte> drawRect(List<Rectangle> rectList, Image<Bgr, Byte> currentFrame)
+        {
+            if (rectList.Count > 0)
+            {
+                //draw a rectangle around each face
+                foreach (Rectangle person in rectList)
+                {
+                    CvInvoke.Rectangle(currentFrame, person, new Bgr(Color.Red).MCvScalar, 2);
+                }
+                //DrawItemEventArgs 
+            }
+            return currentFrame;
+        }
     }
 }

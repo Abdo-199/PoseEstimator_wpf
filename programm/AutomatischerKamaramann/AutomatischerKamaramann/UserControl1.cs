@@ -28,6 +28,7 @@ namespace AutomatischerKamaramann
         Image<Bgr, Byte> emguImage = null;
         poseEstimation posing = new poseEstimation();
         DetectFace fd = new DetectFace();
+        drawing dr = new drawing();
 
         bool PoseEstimationEnabled = false;
         bool FaceDetectionEnabled = false;
@@ -83,7 +84,7 @@ namespace AutomatischerKamaramann
                         if (PoseEstimationEnabled)
                         {
                             //update the Image to the Image with Rectangles
-                            emguImage = posing.getPoses(emguImage);
+                            emguImage =dr.drawRect(  posing.getPoses(emguImage), emguImage);
                             pictureBox1.Image = emguImage.ToBitmap();
                         }
 
@@ -122,7 +123,16 @@ namespace AutomatischerKamaramann
         private void Radio_PoseEstimation_CheckedChanged(object sender, EventArgs e)
         {
             PoseEstimationEnabled = true;
-            pictureBox1.Image = posing.getPoses(emguImage).ToBitmap();
+            if (emguImage==null)
+            {
+                MessageBox.Show("Bitte wählen Sie einen Foto");
+            }
+            else
+            {
+                emguImage = dr.drawRect(posing.getPoses(emguImage), emguImage);
+                pictureBox1.Image = emguImage.ToBitmap();
+            }
+            
 
         }
 

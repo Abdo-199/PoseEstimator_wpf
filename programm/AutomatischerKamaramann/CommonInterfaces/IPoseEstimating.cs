@@ -11,7 +11,7 @@ namespace CommonInterfaces
 {
     public interface IPoseEstimating
     {
-        public Image<Bgr, Byte> getPoses(Image<Bgr, Byte> currentFrame);
-        public List<Rectangle> PoseFraming(List<Dictionary<string, Point>> coordinates);
+       
+        public List<Rectangle> getPoses(Image<Bgr,Byte> currentFrame);
     }
 }
