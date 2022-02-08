@@ -35,10 +35,10 @@ namespace AutomatischerKamaramann
             this.Radio_PoseEstimation = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
-            this.iconButton3 = new FontAwesome.Sharp.IconButton();
+            this.AlleObjecteAusschneidenButton = new System.Windows.Forms.RadioButton();
+            this.AusschnittAuswählenbutton = new System.Windows.Forms.RadioButton();
+            this.NächstePersonnButton = new FontAwesome.Sharp.IconButton();
+            this.PersonAusButton = new FontAwesome.Sharp.IconButton();
             this.btnSave = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -72,12 +72,12 @@ namespace AutomatischerKamaramann
             this.radioButton1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.radioButton1.Location = new System.Drawing.Point(463, 97);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(122, 19);
+            this.radioButton1.Size = new System.Drawing.Size(126, 19);
             this.radioButton1.TabIndex = 2;
             this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Gesichte erkennen";
+            this.radioButton1.Text = "Gesichter erkennen";
             this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.radioButton1.Click += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // Radio_PoseEstimation
             // 
@@ -118,57 +118,58 @@ namespace AutomatischerKamaramann
             this.label2.TabIndex = 5;
             this.label2.Text = "Bitte wählen Sie ein Option aus :";
             // 
-            // radioButton3
+            // AlleObjecteAusschneidenButton
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.radioButton3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.radioButton3.Location = new System.Drawing.Point(463, 220);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(211, 19);
-            this.radioButton3.TabIndex = 6;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "alle erkannte Objekte ausschneiden";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            this.AlleObjecteAusschneidenButton.AutoSize = true;
+            this.AlleObjecteAusschneidenButton.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.AlleObjecteAusschneidenButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.AlleObjecteAusschneidenButton.Location = new System.Drawing.Point(463, 220);
+            this.AlleObjecteAusschneidenButton.Name = "AlleObjecteAusschneidenButton";
+            this.AlleObjecteAusschneidenButton.Size = new System.Drawing.Size(211, 19);
+            this.AlleObjecteAusschneidenButton.TabIndex = 6;
+            this.AlleObjecteAusschneidenButton.TabStop = true;
+            this.AlleObjecteAusschneidenButton.Text = "alle erkannte Objekte ausschneiden";
+            this.AlleObjecteAusschneidenButton.UseVisualStyleBackColor = true;
+            this.AlleObjecteAusschneidenButton.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
-            // radioButton4
+            // AusschnittAuswählenbutton
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.radioButton4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.radioButton4.Location = new System.Drawing.Point(463, 254);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(152, 19);
-            this.radioButton4.TabIndex = 7;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Ausschnitte auswählen :";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
+            this.AusschnittAuswählenbutton.AutoSize = true;
+            this.AusschnittAuswählenbutton.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.AusschnittAuswählenbutton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.AusschnittAuswählenbutton.Location = new System.Drawing.Point(463, 254);
+            this.AusschnittAuswählenbutton.Name = "AusschnittAuswählenbutton";
+            this.AusschnittAuswählenbutton.Size = new System.Drawing.Size(152, 19);
+            this.AusschnittAuswählenbutton.TabIndex = 7;
+            this.AusschnittAuswählenbutton.TabStop = true;
+            this.AusschnittAuswählenbutton.Text = "Ausschnitte auswählen :";
+            this.AusschnittAuswählenbutton.UseVisualStyleBackColor = true;
+            this.AusschnittAuswählenbutton.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
-            // iconButton2
+            // NächstePersonnButton
             // 
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton2.IconColor = System.Drawing.Color.Black;
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.Location = new System.Drawing.Point(463, 291);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(149, 23);
-            this.iconButton2.TabIndex = 8;
-            this.iconButton2.Text = "Nächste Person";
-            this.iconButton2.UseVisualStyleBackColor = true;
+            this.NächstePersonnButton.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.NächstePersonnButton.IconColor = System.Drawing.Color.Black;
+            this.NächstePersonnButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.NächstePersonnButton.Location = new System.Drawing.Point(463, 291);
+            this.NächstePersonnButton.Name = "NächstePersonnButton";
+            this.NächstePersonnButton.Size = new System.Drawing.Size(149, 23);
+            this.NächstePersonnButton.TabIndex = 8;
+            this.NächstePersonnButton.Text = "Nächste Person";
+            this.NächstePersonnButton.UseVisualStyleBackColor = true;
+            this.NächstePersonnButton.Click += new System.EventHandler(this.iconButton2_Click);
             // 
-            // iconButton3
+            // PersonAusButton
             // 
-            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton3.IconColor = System.Drawing.Color.Black;
-            this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton3.Location = new System.Drawing.Point(463, 332);
-            this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Size = new System.Drawing.Size(149, 23);
-            this.iconButton3.TabIndex = 9;
-            this.iconButton3.Text = "Person auswählen";
-            this.iconButton3.UseVisualStyleBackColor = true;
+            this.PersonAusButton.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.PersonAusButton.IconColor = System.Drawing.Color.Black;
+            this.PersonAusButton.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.PersonAusButton.Location = new System.Drawing.Point(463, 332);
+            this.PersonAusButton.Name = "PersonAusButton";
+            this.PersonAusButton.Size = new System.Drawing.Size(149, 23);
+            this.PersonAusButton.TabIndex = 9;
+            this.PersonAusButton.Text = "Person auswählen";
+            this.PersonAusButton.UseVisualStyleBackColor = true;
             // 
             // btnSave
             // 
@@ -189,10 +190,10 @@ namespace AutomatischerKamaramann
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.iconButton3);
-            this.Controls.Add(this.iconButton2);
-            this.Controls.Add(this.radioButton4);
-            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.PersonAusButton);
+            this.Controls.Add(this.NächstePersonnButton);
+            this.Controls.Add(this.AusschnittAuswählenbutton);
+            this.Controls.Add(this.AlleObjecteAusschneidenButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Radio_PoseEstimation);
@@ -215,10 +216,10 @@ namespace AutomatischerKamaramann
         private System.Windows.Forms.RadioButton Radio_PoseEstimation;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private FontAwesome.Sharp.IconButton iconButton2;
-        private FontAwesome.Sharp.IconButton iconButton3;
+        private System.Windows.Forms.RadioButton AlleObjecteAusschneidenButton;
+        private System.Windows.Forms.RadioButton AusschnittAuswählenbutton;
+        private FontAwesome.Sharp.IconButton NächstePersonnButton;
+        private FontAwesome.Sharp.IconButton PersonAusButton;
         private FontAwesome.Sharp.IconButton btnSave;
     }
 }

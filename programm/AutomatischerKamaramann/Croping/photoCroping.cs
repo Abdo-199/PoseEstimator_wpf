@@ -16,25 +16,14 @@ namespace Croping
 {
     public static class photoCroping
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="originalWidth"></param>
-        /// <param name="originalHeight"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <returns></returns>
-        //public static List<Bitmap> CropsList;
 
         public static Bitmap ResizeCrop(Image<Bgr, byte> source, Rectangle Face)
         {
-            //List<Bitmap> result = new List<Bitmap>();
-
             try
             {
                 //Calculates the new width and height of the Crop
-                double nFaceW = Face.Width * 1.6f;
-                double nFaceH = Face.Height * 2.4f;
+                double nFaceW = Face.Width * 2f;
+                double nFaceH = Face.Height * 2.5f;
 
                 int x = Face.X;
                 int y = Face.Y;
@@ -45,9 +34,9 @@ namespace Croping
                 int nx = x + shiftX;
                 int ny = y + shiftY;
 
-                source = crop(source, nx, ny, (int)nFaceW, (int)nFaceH).ToImage<Bgr, byte>();
+                source = crop(source, nx, ny, (int)nFaceW, (int)nFaceH).ToImage<Bgr,byte>();
                 return source.AsBitmap();
-                //pictureBox2.Image = Img4Crop.AsBitmap();
+
             }
 
             catch (Exception e)
@@ -55,7 +44,7 @@ namespace Croping
                 Console.WriteLine(e);
                 throw;
             }
-            
+
         }
 
         public static Bitmap crop(Image<Bgr, byte> Img, int x, int y, int width, int height)
@@ -77,5 +66,5 @@ namespace Croping
 
 
 
-    
+
 
