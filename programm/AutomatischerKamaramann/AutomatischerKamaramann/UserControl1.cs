@@ -28,12 +28,14 @@ namespace AutomatischerKamaramann
 {
     public partial class UserControl1 : UserControl
     {
-        Image<Bgr, Byte> emguImage = null;
+       
         Image<Bgr, byte> emguImage1 = null;
         poseEstimation posing = new poseEstimation();
         DetectFace fd = new DetectFace();
         drawing dr = new drawing();
         List<Bitmap> CropsList = new List<Bitmap>();
+        Image<Bgr, Byte> emguImage_face = null;
+        private Image<Bgr, Byte> emguImage_pose = null;
 
         bool CropEnabled = false;
         bool PoseEstimationEnabled = false;
@@ -56,32 +58,23 @@ namespace AutomatischerKamaramann
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
                         string filePath = ofd.FileName;
-                        emguImage = new Image<Bgr, byte>(filePath);
+                        
                         emguImage1 = new Image<Bgr, byte>(filePath);
-
-
+                        emguImage_face = new Image<Bgr, byte>(filePath);
+                        emguImage_pose = new Image<Bgr, byte>(filePath);
                         #region resisizing
-
-                        double oldHeight = emguImage.Height;
-                        double oldWidth = emguImage.Width;
-                        double newHeight = pictureBox1.Height;
-                        //to keep the aspect ratio
-                        double newWidth = oldWidth * (newHeight / oldHeight);
-                        //resizing the width of the PicBox
-                        pictureBox1.Width = (int)newWidth; //Muss noch angepasst werden wenn ein Bild zu Breit ist
-
-                        emguImage = emguImage.Resize((int)newWidth, (int)newHeight, Inter.Cubic);
-                        emguImage1 = emguImage1.Resize((int)newWidth,(int)newHeight,Inter.Cubic);
-
+                        emguImage1 = resize(emguImage1);
+                        emguImage_face = resize(emguImage_face);
+                        emguImage_pose = resize(emguImage_pose);
                         #endregion
-
-                        pictureBox1.Image = emguImage.ToBitmap();
-
+                        pictureBox1.Image = emguImage_face.ToBitmap();
                         if (PoseEstimationEnabled)
                         {
-                            //update the Image to the Image with Rectangles
-                            emguImage = dr.drawRect(posing.getPoses(emguImage), emguImage);
-                            pictureBox1.Image = emguImage.ToBitmap();
+                            enablePoseEstimation();
+                        }
+                        if (FaceDetectionEnabled)
+                        {
+                            enableFaceDetiction();
                         }
                     }
                 }
@@ -91,28 +84,22 @@ namespace AutomatischerKamaramann
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private Image<Bgr, Byte> resize(Image<Bgr, Byte> img)
+        {
+            double oldHeight = img.Height;
+            double oldWidth = img.Width;
+            double newHeight = pictureBox1.Height;
+            //to keep the aspect ratio
+            double newWidth = oldWidth * (newHeight / oldHeight);
+            //resizing the width of the PicBox
+            pictureBox1.Width = (int)newWidth;
+            img = img.Resize((int)newWidth, (int)newHeight, Inter.Cubic);
+            return img;
+
+        }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton1.Checked)
-            {
-                try
-                {
-                    if (emguImage == null)
-                        MessageBox.Show("Bitte Wählen Sie ein Bild aus ");
-                    else
-                    {
-                        emguImage = dr.drawRect(fd.FaceDetIm(emguImage), emguImage);
-                        pictureBox1.Image = emguImage.ToBitmap();
-                    }
-
-                }
-                catch (Exception exception)
-                {
-                    MessageBox.Show(exception.Message);
-                    throw;
-                }
-            }
 
         }
 
@@ -123,16 +110,7 @@ namespace AutomatischerKamaramann
 
         private void Radio_PoseEstimation_CheckedChanged(object sender, EventArgs e)
         {
-            PoseEstimationEnabled = true;
-            if (emguImage == null)
-            {
-                MessageBox.Show("Bitte wählen Sie einen Foto");
-            }
-            else
-            {
-                emguImage = dr.drawRect(posing.getPoses(emguImage), emguImage);
-                pictureBox1.Image = emguImage.ToBitmap();
-            }
+            
 
 
         }
@@ -196,6 +174,48 @@ namespace AutomatischerKamaramann
 
             }*/
 
+        }
+
+        private void Radio_PoseEstimation_Click(object sender, EventArgs e)
+        {
+            PoseEstimationEnabled = true;
+            if (emguImage_pose == null)
+            {
+                MessageBox.Show("Bitte wählen Sie einen Foto");
+            }
+            else
+            {
+               enablePoseEstimation();
+            }
+        }
+
+        private void radioButton1_Click(object sender, EventArgs e)
+        {
+            FaceDetectionEnabled = true;
+            if (emguImage_face == null)
+            {
+                MessageBox.Show("Bitte wählen Sie einen Foto");
+            }
+            else
+            {
+                
+                enableFaceDetiction();
+            }
+        }
+
+        private void enablePoseEstimation()
+        {
+            
+            emguImage_pose = dr.drawRect(posing.getPoses(emguImage_pose), emguImage_pose);
+            pictureBox1.Image = emguImage_pose.ToBitmap();
+            PoseEstimationEnabled = false;
+        }
+
+        private void enableFaceDetiction()
+        {
+            emguImage_face = dr.drawRect(fd.FaceDetIm(emguImage_face), emguImage_face);
+            pictureBox1.Image = emguImage_face.ToBitmap();
+            FaceDetectionEnabled = false;
         }
     }
 }
