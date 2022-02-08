@@ -38,10 +38,10 @@ namespace ApiManager
             string content = response.Content;
             //deserializing the JSON string into List<Dictionary<string,List<double>>>
             var deContent = JsonConvert.DeserializeObject<List<Dictionary<string, List<double>>>>(content);
-            //new list with PointF instead of List<double>
+            //new list with Point instead of List<double>
             List<Dictionary<string, Point>> coordinats = new List<Dictionary<string, Point>>();
-            //converting the List<double> part </double> to a pointf
-            //to get valid coordinates for the drawing of the rectangle arround each person
+            //converting the List<double> part </double> to a system.drawing.point
+            //to get valid coordinates for the drawing of the rectangle 
             foreach (var person in deContent)
             {   // new Dictionary for each Person
                 Dictionary<string, Point> parts = new Dictionary<string, Point>();

@@ -77,14 +77,18 @@ namespace AutomatischerKamaramann
                // Playvideo();
                 #region easier way to play the video and call the Methods
                 inFrames framesGrapper = new inFrames();
-                //poseEstimation pose = new poseEstimation();
+                // two frames lists one for the faceDet and one for the poseEst to get a clear frames
+                //(( without drawn rectangles)) if you are processing the same video twice 
                 Frames = framesGrapper.vidToFrames(fd.FileName);
                 FramesPose = framesGrapper.vidToFrames(fd.FileName);
+                //preparing the first list and display it (unprocessed firstly )
                 for (int i = 0; i < Frames.Count; i++)
                 {
+                    //resize each frame and the picBox to keep the original aspect ratio
                     Frames[i] = resize(Frames[i]);
                     mp.Image = Frames[i].ToBitmap();
-                    System.Threading.Thread.Sleep(33);
+                    // to display the video with its original speed
+                    System.Threading.Thread.Sleep(FPS);
                     Application.DoEvents();
                 }
 
@@ -273,11 +277,14 @@ namespace AutomatischerKamaramann
 
         private void enablePoseEstimation()
         {
+            //finishing all the processing firstly and the display the video 
+            //to avoid playing the processed video with delay 
             List<Image<Bgr, Byte>> newFrames = new List<Image<Bgr, byte>>();
             foreach (Image<Bgr, Byte> Frame in Frames)
             {
                 newFrames.Add(draw.drawRect(fd.FaceDetIm(Frame), Frame));
             }
+            //display
             foreach (var frame in newFrames)
             {
                 mp.Image = frame.ToBitmap();
@@ -285,7 +292,7 @@ namespace AutomatischerKamaramann
                 Application.DoEvents();
             }
         }
-
+        //same concept as the previous method
         private void enableFaceDetiction()
         {
             List<Image<Bgr, Byte>> newFrames = new List<Image<Bgr, byte>>();

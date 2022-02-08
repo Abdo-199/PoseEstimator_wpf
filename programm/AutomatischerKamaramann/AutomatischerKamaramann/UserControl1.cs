@@ -58,9 +58,14 @@ namespace AutomatischerKamaramann
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
                         string filePath = ofd.FileName;
-                        
+                        //e.g. to use the faceDet after the PoseEstm we need to clear the image from the drawn rectangles 
+                        //because the clearing of the drawn rectangles needs to make major changes
+                        //on the code i found the using of three images will be easier.
+                        //to be used with the crops
                         emguImage1 = new Image<Bgr, byte>(filePath);
+                        //to be used with face detection
                         emguImage_face = new Image<Bgr, byte>(filePath);
+                        // to be used with the pose estimation 
                         emguImage_pose = new Image<Bgr, byte>(filePath);
                         #region resisizing
                         emguImage1 = resize(emguImage1);
@@ -68,6 +73,7 @@ namespace AutomatischerKamaramann
                         emguImage_pose = resize(emguImage_pose);
                         #endregion
                         pictureBox1.Image = emguImage_face.ToBitmap();
+                        //if the radio button was already checked before uploading the photo
                         if (PoseEstimationEnabled)
                         {
                             enablePoseEstimation();
@@ -84,14 +90,20 @@ namespace AutomatischerKamaramann
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        /// <summary>
+        /// Method to resize the Photo and the picBox to keep the original aspect ratio
+        /// </summary>
+        /// <param name="img"></param>
+        /// <returns></returns>
         private Image<Bgr, Byte> resize(Image<Bgr, Byte> img)
         {
             double oldHeight = img.Height;
             double oldWidth = img.Width;
+            //initiate the process with the picBox height 
             double newHeight = pictureBox1.Height;
-            //to keep the aspect ratio
+            //adjust the width of the image based on the new height and the original aspect ratio
             double newWidth = oldWidth * (newHeight / oldHeight);
-            //resizing the width of the PicBox
+            //resizing the width of the PicBox to have the same as the image's
             pictureBox1.Width = (int)newWidth;
             img = img.Resize((int)newWidth, (int)newHeight, Inter.Cubic);
             return img;
@@ -179,6 +191,7 @@ namespace AutomatischerKamaramann
         private void Radio_PoseEstimation_Click(object sender, EventArgs e)
         {
             PoseEstimationEnabled = true;
+            //if the there is no uploaded image
             if (emguImage_pose == null)
             {
                 MessageBox.Show("Bitte wählen Sie einen Foto");
@@ -202,10 +215,12 @@ namespace AutomatischerKamaramann
                 enableFaceDetiction();
             }
         }
-
+        /// <summary>
+        /// Method to call the pose estimation and th drawing functions
+        /// </summary>
         private void enablePoseEstimation()
         {
-            
+            //drawRect(List<Rectangle> rectList, Image<Bgr, Byte> currentFrame)
             emguImage_pose = dr.drawRect(posing.getPoses(emguImage_pose), emguImage_pose);
             pictureBox1.Image = emguImage_pose.ToBitmap();
             PoseEstimationEnabled = false;

@@ -14,6 +14,7 @@ namespace UnitTests
     [TestFixture]
     class PoseEstimating_UT
     {
+        //to globalize the drawing method, i had to change the the structure of the poseEstimation class
         //[Test]
         //public void PoseFraming_Test()
         //{
@@ -50,13 +51,13 @@ namespace UnitTests
         public void getPoses_test()
         {
 
-            Image<Bgr,Byte> testImage=new Image<Bgr, byte>($"{AppDomain.CurrentDomain.BaseDirectory}poseTestPic");
+            Image<Bgr,Byte> testImage=new Image<Bgr, byte>($"{AppDomain.CurrentDomain.BaseDirectory}/poseTestPic.jpeg");
             poseEstimation PE=new poseEstimation();
             //assemble
             List<Rectangle> expected = new List<Rectangle>() 
             {
-                    {new Rectangle(45,42,262,584)},
-                    {new Rectangle(303,49,127,563)}
+                    {new Rectangle(46,42,267,596)},
+                    {new Rectangle(309,50,129,573)}
             };
             List<Rectangle> result = PE.getPoses(testImage);
             //assert
