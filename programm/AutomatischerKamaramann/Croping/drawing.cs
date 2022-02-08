@@ -24,5 +24,7 @@ namespace Croping
             }
             return currentFrame;
         }
+
+        
     }
 }

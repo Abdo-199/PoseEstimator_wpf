@@ -13,10 +13,11 @@ namespace FaceDetection
     public class DetectFace : IFaceDetection
     {
         private CascadeClassifier faceCascadeClassifier = new CascadeClassifier("haarcascade_frontalface_alt.xml");
+        public List<Rectangle> facesList = new List<Rectangle>();
 
         public List<Rectangle> FaceDetIm(Image<Bgr, byte> image)
         {
-            List<Rectangle> facesList = new List<Rectangle>();
+            facesList = new List<Rectangle>();
 
             var grayImage = image.Convert<Gray, byte>();
             CvInvoke.CvtColor(image, grayImage, ColorConversion.Bgr2Gray);

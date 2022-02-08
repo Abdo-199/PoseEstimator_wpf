@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 using PoseEstimating;
 using FaceDetection;
 using Croping;
@@ -29,13 +30,26 @@ namespace AutomatischerKamaramann
         poseEstimation posing = new poseEstimation();
         DetectFace fd = new DetectFace();
         drawing dr = new drawing();
+        List<Bitmap> CropsList = new List<Bitmap>();
 
+        bool CropEnabled = false;
         bool PoseEstimationEnabled = false;
         bool FaceDetectionEnabled = false;
 
         public UserControl1()
         {
             InitializeComponent();
+
+            if (CropEnabled)
+            {
+                pictureBox1.Image = emguImage.ToBitmap();
+            }
+
+            if (FaceDetectionEnabled)//muss noch nach Oben  
+            {
+                pictureBox1.Image = emguImage.ToBitmap();
+
+            }
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
@@ -44,7 +58,7 @@ namespace AutomatischerKamaramann
             try
             {
                 using OpenFileDialog ofd = new OpenFileDialog()
-                    { Filter = "JPG|*.jpg|JPEG|*.jpeg|PNG|*|Bitmap|*.bmp", ValidateNames = true, Multiselect = false };
+                { Filter = "JPG|*.jpg|JPEG|*.jpeg|PNG|*|Bitmap|*.bmp", ValidateNames = true, Multiselect = false };
                 {
                     ofd.Title = "bitte wählen Sie ein Image Datei aus";
                     if (ofd.ShowDialog() == DialogResult.OK)
@@ -68,23 +82,15 @@ namespace AutomatischerKamaramann
 
 
 
-                        
+
                         pictureBox1.Image = emguImage.ToBitmap();
 
-                        
 
-                        if (FaceDetectionEnabled)//muss noch nach Oben  
-                        {
-                            //emguImage = faceDetection.FaceDetIm(emguImage);
 
-                            pictureBox1.Image = emguImage.ToBitmap();
-
-                        }
-                        
                         if (PoseEstimationEnabled)
                         {
                             //update the Image to the Image with Rectangles
-                            emguImage =dr.drawRect(  posing.getPoses(emguImage), emguImage);
+                            emguImage = dr.drawRect(posing.getPoses(emguImage), emguImage);
                             pictureBox1.Image = emguImage.ToBitmap();
                         }
 
@@ -103,16 +109,22 @@ namespace AutomatischerKamaramann
             try
             {
                 FaceDetectionEnabled = true;
-                List<Rectangle> ListFaces = new List<Rectangle>();
+                if (emguImage == null)
+                    MessageBox.Show("Bitte Wählen Sie ein Bild aus ");
+                else
+                {
+                    emguImage = dr.drawRect(fd.FaceDetIm(emguImage), emguImage);
+                    pictureBox1.Image = emguImage.ToBitmap();
+                }
 
-               
+
             }
             catch (Exception exception)
             {
-                MessageBox.Show("Bitte wählen Sie ein Image Datei aus");
+                MessageBox.Show(exception.Message);
                 throw;
             }
-            
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -123,7 +135,7 @@ namespace AutomatischerKamaramann
         private void Radio_PoseEstimation_CheckedChanged(object sender, EventArgs e)
         {
             PoseEstimationEnabled = true;
-            if (emguImage==null)
+            if (emguImage == null)
             {
                 MessageBox.Show("Bitte wählen Sie einen Foto");
             }
@@ -132,7 +144,7 @@ namespace AutomatischerKamaramann
                 emguImage = dr.drawRect(posing.getPoses(emguImage), emguImage);
                 pictureBox1.Image = emguImage.ToBitmap();
             }
-            
+
 
         }
 
@@ -155,22 +167,25 @@ namespace AutomatischerKamaramann
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
-            
-        }
+            pictureBox1.Image = CropsList[0];
 
+        }
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            if (pictureBox1.Image != null)
+            CropEnabled = true;
+            try
             {
-                try
+                for (int i = 0; i < fd.facesList.Count; i++)
                 {
-
+                    Bitmap bp = photoCroping.ResizeCrop(emguImage, fd.facesList[i]);
+                    CropsList.Add(bp);
+                    //emguImage = bp.ToImage<Bgr, byte>();
                 }
-                catch (Exception exception)
-                {
-                    Console.WriteLine(exception);
-                    throw;
-                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
             }
 
         }

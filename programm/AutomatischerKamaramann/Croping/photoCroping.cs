@@ -24,75 +24,58 @@ namespace Croping
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns></returns>
+        //public static List<Bitmap> CropsList;
 
-        public static List<Bitmap> ResizeCrop(Image<Bgr, byte> source, List<Rectangle> Faces)
+        public static Bitmap ResizeCrop(Image<Bgr, byte> source, Rectangle Face)
         {
-            List<Bitmap> result = new List<Bitmap>();
+            //List<Bitmap> result = new List<Bitmap>();
 
             try
             {
-                
                 //Calculates the new width and height of the Crop
-                foreach (var face in Faces)
-                {
+                double nFaceW = Face.Width * 1.6f;
+                double nFaceH = Face.Height * 2.4f;
 
-                    float sourceRatio = (float)source.Width / source.Height;
+                int x = Face.X;
+                int y = Face.Y;
 
-                    int nFaceX = face.Width * (int)1.4f;
-                    int nFaceY = face.Height * (int)2.2f;
+                int shiftX = (Face.Width / 2) - (int)(nFaceW / 2);
+                int shiftY = (Face.Height / 2) - (int)(nFaceH / 2);
 
-                    using (var targetBitmap = new Bitmap(nFaceX, nFaceY))
-                    {
-                        using (var g = Graphics.FromImage(targetBitmap))
-                        {
-                            g.CompositingQuality = CompositingQuality.HighQuality;
-                            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                            g.SmoothingMode = SmoothingMode.HighQuality;
+                int nx = x + shiftX;
+                int ny = y + shiftY;
 
-                            float scalefacetorY = (float)source.Height / nFaceY;
-                            float scalefacetorX = (float)source.Width / nFaceX;
-
-                            int newWidth = (int)(source.Width / scalefacetorX);
-                            int newHeight = (int)(source.Height / scalefacetorY);
-
-                            if (newWidth < nFaceX) newWidth = nFaceX;
-                            if (newHeight < nFaceY) newHeight = nFaceY;
-
-                            int shiftX = 0;
-                            int shiftY = 0;
-
-                            if (newWidth > nFaceX)
-                            {
-                                shiftX = (newWidth - nFaceX) / 2;
-                            }
-
-                            if (newHeight > nFaceY)
-                            {
-                                shiftY = (newHeight - nFaceY) / 2;
-                            }
-                            // Draw image
-
-                            //g.DrawImage(source.ToBitmap(), -shiftX, -shiftY, newWidth, newHeight);
-                            result.Add(targetBitmap);
-
-                        }
-
-                    
-                    }
-
-                
-                }
+                source = crop(source, nx, ny, (int)nFaceW, (int)nFaceH).ToImage<Bgr, byte>();
+                return source.AsBitmap();
+                //pictureBox2.Image = Img4Crop.AsBitmap();
             }
+
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
             
-
-            return result;
         }
 
+        public static Bitmap crop(Image<Bgr, byte> Img, int x, int y, int width, int height)
+        {
+            Rectangle crop = new Rectangle(x, y, width, height);
+            var bmp = new Bitmap(Img.AsBitmap(), width, height);
 
+            using (var gr = Graphics.FromImage(bmp))
+            {
+                gr.DrawImage(Img.AsBitmap(), new Rectangle(0, 0, width, height), crop, GraphicsUnit.Pixel);
+            }
+
+            return bmp;
+        }
     }
 }
+
+
+
+
+
+    
+
