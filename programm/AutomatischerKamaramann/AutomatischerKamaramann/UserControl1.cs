@@ -28,7 +28,7 @@ namespace AutomatischerKamaramann
 {
     public partial class UserControl1 : UserControl
     {
-        Image<Bgr, Byte> emguImage = null;
+       
         Image<Bgr, byte> emguImage1 = null;
         poseEstimation posing = new poseEstimation();
         DetectFace fd = new DetectFace();
@@ -58,24 +58,23 @@ namespace AutomatischerKamaramann
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
                         string filePath = ofd.FileName;
-                        emguImage = new Image<Bgr, byte>(filePath);
+                        
                         emguImage1 = new Image<Bgr, byte>(filePath);
                         emguImage_face = new Image<Bgr, byte>(filePath);
                         emguImage_pose = new Image<Bgr, byte>(filePath);
                         #region resisizing
-
                         emguImage1 = resize(emguImage1);
                         emguImage_face = resize(emguImage_face);
                         emguImage_pose = resize(emguImage_pose);
                         #endregion
-
                         pictureBox1.Image = emguImage_face.ToBitmap();
-
                         if (PoseEstimationEnabled)
                         {
-                            //update the Image to the Image with Rectangles
-                            emguImage = dr.drawRect(posing.getPoses(emguImage), emguImage);
-                            pictureBox1.Image = emguImage.ToBitmap();
+                            enablePoseEstimation();
+                        }
+                        if (FaceDetectionEnabled)
+                        {
+                            enableFaceDetiction();
                         }
                     }
                 }
@@ -111,16 +110,7 @@ namespace AutomatischerKamaramann
 
         private void Radio_PoseEstimation_CheckedChanged(object sender, EventArgs e)
         {
-            PoseEstimationEnabled = true;
-            if (emguImage == null)
-            {
-                MessageBox.Show("Bitte wählen Sie einen Foto");
-            }
-            else
-            {
-                emguImage = dr.drawRect(posing.getPoses(emguImage), emguImage);
-                pictureBox1.Image = emguImage.ToBitmap();
-            }
+            
 
 
         }
@@ -195,12 +185,7 @@ namespace AutomatischerKamaramann
             }
             else
             {
-                // pictureBox1.Image = originalImage.ToBitmap();
-                //originalImage.CopyTo(emguImage_pose);
-                emguImage_pose = dr.drawRect(posing.getPoses(emguImage_pose), emguImage_pose);
-                pictureBox1.Image = null;
-                pictureBox1.Image = emguImage_pose.ToBitmap();
-                PoseEstimationEnabled = false;
+               enablePoseEstimation();
             }
         }
 
@@ -213,13 +198,24 @@ namespace AutomatischerKamaramann
             }
             else
             {
-                // pictureBox1.Image = originalImage.ToBitmap();
-                //originalImage.CopyTo(emguImage);
-                emguImage_face = dr.drawRect(fd.FaceDetIm(emguImage_face), emguImage_face);
-                pictureBox1.Image = null;
-                pictureBox1.Image = emguImage_face.ToBitmap();
-                PoseEstimationEnabled = false;
+                
+                enableFaceDetiction();
             }
+        }
+
+        private void enablePoseEstimation()
+        {
+            
+            emguImage_pose = dr.drawRect(posing.getPoses(emguImage_pose), emguImage_pose);
+            pictureBox1.Image = emguImage_pose.ToBitmap();
+            PoseEstimationEnabled = false;
+        }
+
+        private void enableFaceDetiction()
+        {
+            emguImage_face = dr.drawRect(fd.FaceDetIm(emguImage_face), emguImage_face);
+            pictureBox1.Image = emguImage_face.ToBitmap();
+            FaceDetectionEnabled = false;
         }
     }
 }

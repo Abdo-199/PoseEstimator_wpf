@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ApiManager\ApiManager.csproj" />
     <ProjectReference Include="..\Croping\Croping.csproj" />
+    <ProjectReference Include="..\FaceDetection\FaceDetection.csproj" />
     <ProjectReference Include="..\PoseEstimating\PoseEstimating.csproj" />
     <ProjectReference Include="..\VideoToFrames\VideoToFrames.csproj" />
   </ItemGroup>

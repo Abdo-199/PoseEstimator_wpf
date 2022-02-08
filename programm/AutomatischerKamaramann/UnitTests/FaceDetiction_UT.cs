@@ -18,7 +18,7 @@ namespace UnitTests
         [Test]
         public void FaceDetIm_Test()
         {
-            FaceDetection.FaceDetection fbDetection = new FaceDetection.FaceDetection();
+            //FaceDetection.FaceDetection fbDetection = new FaceDetection.FaceDetection();
 
 
         }

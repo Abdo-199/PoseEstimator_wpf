@@ -55,8 +55,9 @@ namespace AutomatischerKamaramann
             this.mp.BackColor = System.Drawing.Color.Black;
             this.mp.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.mp.Location = new System.Drawing.Point(3, 0);
+            this.mp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mp.Name = "mp";
-            this.mp.Size = new System.Drawing.Size(454, 470);
+            this.mp.Size = new System.Drawing.Size(518, 625);
             this.mp.TabIndex = 0;
             this.mp.TabStop = false;
             // 
@@ -65,9 +66,10 @@ namespace AutomatischerKamaramann
             this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
             this.iconButton1.IconColor = System.Drawing.Color.Black;
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.Location = new System.Drawing.Point(0, 515);
+            this.iconButton1.Location = new System.Drawing.Point(0, 687);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(216, 23);
+            this.iconButton1.Size = new System.Drawing.Size(247, 31);
             this.iconButton1.TabIndex = 2;
             this.iconButton1.Text = "Bitte wählen Sie ein Video Datei aus";
             this.iconButton1.UseVisualStyleBackColor = true;
@@ -75,9 +77,10 @@ namespace AutomatischerKamaramann
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(454, 0);
+            this.textBox1.Location = new System.Drawing.Point(519, 0);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(371, 23);
+            this.textBox1.Size = new System.Drawing.Size(423, 27);
             this.textBox1.TabIndex = 3;
             // 
             // label1
@@ -86,9 +89,9 @@ namespace AutomatischerKamaramann
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(463, 67);
+            this.label1.Location = new System.Drawing.Point(529, 89);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(186, 15);
+            this.label1.Size = new System.Drawing.Size(234, 20);
             this.label1.TabIndex = 5;
             this.label1.Text = "Bitte wählen Sie ein Option aus :";
             // 
@@ -97,27 +100,31 @@ namespace AutomatischerKamaramann
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.radioButton1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.radioButton1.Location = new System.Drawing.Point(463, 97);
+            this.radioButton1.Location = new System.Drawing.Point(529, 129);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(122, 19);
+            this.radioButton1.Size = new System.Drawing.Size(156, 24);
             this.radioButton1.TabIndex = 6;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Gesichte erkennen";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.radioButton1.Click += new System.EventHandler(this.radioButton1_Click);
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.radioButton2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.radioButton2.Location = new System.Drawing.Point(463, 122);
+            this.radioButton2.Location = new System.Drawing.Point(529, 163);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(122, 19);
+            this.radioButton2.Size = new System.Drawing.Size(159, 24);
             this.radioButton2.TabIndex = 7;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = " Körpern erkennen";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.Click += new System.EventHandler(this.radioButton2_Click);
             // 
             // label2
             // 
@@ -125,9 +132,9 @@ namespace AutomatischerKamaramann
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(463, 188);
+            this.label2.Location = new System.Drawing.Point(529, 251);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(186, 15);
+            this.label2.Size = new System.Drawing.Size(234, 20);
             this.label2.TabIndex = 8;
             this.label2.Text = "Bitte wählen Sie ein Option aus :";
             // 
@@ -136,9 +143,10 @@ namespace AutomatischerKamaramann
             this.radioButton3.AutoSize = true;
             this.radioButton3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.radioButton3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.radioButton3.Location = new System.Drawing.Point(463, 220);
+            this.radioButton3.Location = new System.Drawing.Point(529, 293);
+            this.radioButton3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(211, 19);
+            this.radioButton3.Size = new System.Drawing.Size(272, 24);
             this.radioButton3.TabIndex = 9;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "alle erkannte Objekte ausschneiden";
@@ -149,9 +157,10 @@ namespace AutomatischerKamaramann
             this.radioButton4.AutoSize = true;
             this.radioButton4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.radioButton4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.radioButton4.Location = new System.Drawing.Point(463, 254);
+            this.radioButton4.Location = new System.Drawing.Point(529, 339);
+            this.radioButton4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(152, 19);
+            this.radioButton4.Size = new System.Drawing.Size(192, 24);
             this.radioButton4.TabIndex = 10;
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "Ausschnitte auswählen :";
@@ -162,9 +171,10 @@ namespace AutomatischerKamaramann
             this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.None;
             this.iconButton2.IconColor = System.Drawing.Color.Black;
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.Location = new System.Drawing.Point(463, 291);
+            this.iconButton2.Location = new System.Drawing.Point(529, 388);
+            this.iconButton2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(149, 23);
+            this.iconButton2.Size = new System.Drawing.Size(170, 31);
             this.iconButton2.TabIndex = 11;
             this.iconButton2.Text = "Nächste Person";
             this.iconButton2.UseVisualStyleBackColor = true;
@@ -174,18 +184,20 @@ namespace AutomatischerKamaramann
             this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.None;
             this.iconButton3.IconColor = System.Drawing.Color.Black;
             this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton3.Location = new System.Drawing.Point(463, 332);
+            this.iconButton3.Location = new System.Drawing.Point(529, 443);
+            this.iconButton3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Size = new System.Drawing.Size(149, 23);
+            this.iconButton3.Size = new System.Drawing.Size(170, 31);
             this.iconButton3.TabIndex = 12;
             this.iconButton3.Text = "Person auswählen";
             this.iconButton3.UseVisualStyleBackColor = true;
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(-9, 467);
+            this.trackBar1.Location = new System.Drawing.Point(-10, 623);
+            this.trackBar1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(466, 45);
+            this.trackBar1.Size = new System.Drawing.Size(533, 56);
             this.trackBar1.TabIndex = 13;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
@@ -197,9 +209,10 @@ namespace AutomatischerKamaramann
             this.BtnPlay.IconChar = FontAwesome.Sharp.IconChar.Play;
             this.BtnPlay.IconColor = System.Drawing.Color.Black;
             this.BtnPlay.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnPlay.Location = new System.Drawing.Point(463, 395);
+            this.BtnPlay.Location = new System.Drawing.Point(529, 527);
+            this.BtnPlay.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnPlay.Name = "BtnPlay";
-            this.BtnPlay.Size = new System.Drawing.Size(50, 50);
+            this.BtnPlay.Size = new System.Drawing.Size(57, 67);
             this.BtnPlay.TabIndex = 14;
             this.BtnPlay.UseVisualStyleBackColor = true;
             this.BtnPlay.Click += new System.EventHandler(this.BtnPlay_Click);
@@ -212,9 +225,10 @@ namespace AutomatischerKamaramann
             this.BtnPause.IconChar = FontAwesome.Sharp.IconChar.Pause;
             this.BtnPause.IconColor = System.Drawing.Color.Black;
             this.BtnPause.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnPause.Location = new System.Drawing.Point(544, 395);
+            this.BtnPause.Location = new System.Drawing.Point(622, 527);
+            this.BtnPause.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnPause.Name = "BtnPause";
-            this.BtnPause.Size = new System.Drawing.Size(50, 50);
+            this.BtnPause.Size = new System.Drawing.Size(57, 67);
             this.BtnPause.TabIndex = 15;
             this.BtnPause.UseVisualStyleBackColor = true;
             this.BtnPause.Click += new System.EventHandler(this.BtnPause_Click);
@@ -227,9 +241,10 @@ namespace AutomatischerKamaramann
             this.BtnStop.IconChar = FontAwesome.Sharp.IconChar.Stop;
             this.BtnStop.IconColor = System.Drawing.Color.Black;
             this.BtnStop.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnStop.Location = new System.Drawing.Point(624, 395);
+            this.BtnStop.Location = new System.Drawing.Point(713, 527);
+            this.BtnStop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnStop.Name = "BtnStop";
-            this.BtnStop.Size = new System.Drawing.Size(50, 50);
+            this.BtnStop.Size = new System.Drawing.Size(57, 67);
             this.BtnStop.TabIndex = 16;
             this.BtnStop.UseVisualStyleBackColor = true;
             this.BtnStop.Click += new System.EventHandler(this.BtnStop_Click);
@@ -239,9 +254,10 @@ namespace AutomatischerKamaramann
             this.BtnSaveVideo.IconChar = FontAwesome.Sharp.IconChar.None;
             this.BtnSaveVideo.IconColor = System.Drawing.Color.Black;
             this.BtnSaveVideo.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnSaveVideo.Location = new System.Drawing.Point(683, 515);
+            this.BtnSaveVideo.Location = new System.Drawing.Point(781, 687);
+            this.BtnSaveVideo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnSaveVideo.Name = "BtnSaveVideo";
-            this.BtnSaveVideo.Size = new System.Drawing.Size(115, 23);
+            this.BtnSaveVideo.Size = new System.Drawing.Size(131, 31);
             this.BtnSaveVideo.TabIndex = 17;
             this.BtnSaveVideo.Text = "Speichern";
             this.BtnSaveVideo.UseVisualStyleBackColor = true;
@@ -249,14 +265,15 @@ namespace AutomatischerKamaramann
             // 
             // progressBarSave
             // 
-            this.progressBarSave.Location = new System.Drawing.Point(683, 489);
+            this.progressBarSave.Location = new System.Drawing.Point(781, 652);
+            this.progressBarSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.progressBarSave.Name = "progressBarSave";
-            this.progressBarSave.Size = new System.Drawing.Size(115, 23);
+            this.progressBarSave.Size = new System.Drawing.Size(131, 31);
             this.progressBarSave.TabIndex = 18;
             // 
             // UserControl2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(33)))), ((int)(((byte)(74)))));
             this.Controls.Add(this.progressBarSave);
@@ -276,8 +293,9 @@ namespace AutomatischerKamaramann
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.iconButton1);
             this.Controls.Add(this.mp);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UserControl2";
-            this.Size = new System.Drawing.Size(825, 541);
+            this.Size = new System.Drawing.Size(943, 721);
             ((System.ComponentModel.ISupportInitialize)(this.mp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
