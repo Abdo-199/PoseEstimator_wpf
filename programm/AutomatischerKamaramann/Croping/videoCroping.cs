@@ -6,25 +6,56 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Emgu.CV;
+using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
+using PoseEstimating;
 
 namespace Croping
 {
-    class videoCroping 
+    public static class videoCroping
     {
-        
-        Image<Bgr, Byte> Frame = null;
 
-        public List<Image<Bgr, Byte>> VideoCrop(Image<Rgb, Byte> currentFrame, Rectangle[] Object)
+
+        public static List<Bitmap> VideoCrop(List<Image<Bgr, byte>> allFrames, List<Rectangle> poseList)
         {
+            List<Bitmap> cropedPoseBitmaps = new List<Bitmap>();
 
-            return null;
+            try
+            {
+                foreach (var frame in allFrames)
+                {
+                    foreach (var pose in poseList)
+                    {
+
+                        Bitmap crop = Crop(frame, pose.X, pose.Y, pose.Width, pose.Height);
+                        cropedPoseBitmaps.Add(crop);
+                            
+                    }    
+                }
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+            return cropedPoseBitmaps;
         }
 
-        public Image<Bgr, Byte> export(string fileName)
+        public static Bitmap Crop(Image<Bgr, byte> img, int x, int y, int width, int height)
         {
+            Rectangle crop = new Rectangle(x, y, width, height);
+            var bmp = new Bitmap(img.AsBitmap(), width, height);
 
-            return null;
+            using (var gr = Graphics.FromImage(bmp))
+            {
+                gr.DrawImage(img.AsBitmap(), new Rectangle(0, 0, width, height), crop, GraphicsUnit.Pixel);
+            }
+
+            return bmp;
         }
+
     }
 }
+
